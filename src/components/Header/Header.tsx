@@ -6,7 +6,9 @@ const Header: React.FC = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.logo}>Logo</div>
+        <Link to="/">
+          <div className={styles.logo}>Logo</div>
+        </Link>
         <div className={styles.authButtons}>
           <Link to="/login">
             <button>Login</button>
