@@ -4,14 +4,6 @@ import styles from "./Homepage.module.css";
 const Homepage: React.FC = () => {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.logo}>Logo</div>
-        <div className={styles.authButtons}>
-          <button>Login</button>
-          <button>Signup</button>
-        </div>
-      </header>
-
       <section className={styles.mainContent}>
         <h1 className={styles.headline}>Headline</h1>
         <p className={styles.supportingHeadline}>Supporting headline</p>
