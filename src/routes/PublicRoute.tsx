@@ -1,22 +1,17 @@
-import React from "react";
-import { Route, useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
+import { Navigate, useLocation } from "react-router-dom";
 
 interface PublicRouteProps {
-  path: string;
-  element: React.ReactElement;
+  children: React.ReactNode;
+  isAuthenticated: boolean;
+  fallback?: string;
 }
 
-const PublicRoute: React.FC<PublicRouteProps> = ({ element, path }) => {
-  let { user } = useUser();
-  let navigate = useNavigate();
-
-  if (user) {
-    navigate("/dashboard");
-    return null;
-  }
-
-  return <Route path={path} element={element} />;
+const PublicRoute: React.FC<PublicRouteProps> = ({
+  children,
+  isAuthenticated,
+  fallback = "/dashboard",
+}) => {
+  return !isAuthenticated ? children : <Navigate to={fallback} />;
 };
 
 export default PublicRoute;

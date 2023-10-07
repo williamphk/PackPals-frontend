@@ -10,6 +10,7 @@ interface User {
 interface UserContextProps {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  isAuthenticated: boolean;
 }
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
@@ -22,7 +23,9 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider
+      value={{ user, setUser, isAuthenticated: user !== null }}
+    >
       {children}
     </UserContext.Provider>
   );

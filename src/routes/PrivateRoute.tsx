@@ -1,21 +1,21 @@
-import React from "react";
-import { Route, useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
+import { Navigate, useLocation } from "react-router-dom";
 
-interface PublicRouteProps {
-  path: string;
-  element: React.ReactElement;
+interface PrivateRouteProps {
+  children: React.ReactNode;
+  isAuthenticated: boolean;
 }
 
-const PublicRoute: React.FC<PublicRouteProps> = ({ element, path }) => {
-  let { user } = useUser();
-  let navigate = useNavigate();
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  children,
+  isAuthenticated,
+}) => {
+  let location = useLocation();
 
-  if (user) {
-    return <Route path={path} element={element} />;
-  }
-
-  navigate("/login");
+  return isAuthenticated ? (
+    children
+  ) : (
+    <Navigate to="/login" state={{ from: location }} />
+  );
 };
 
-export default PublicRoute;
+export default PrivateRoute;

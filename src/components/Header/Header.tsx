@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -7,8 +8,12 @@ const Header: React.FC = () => {
       <header className={styles.header}>
         <div className={styles.logo}>Logo</div>
         <div className={styles.authButtons}>
-          <button>Login</button>
-          <button>Signup</button>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+          <Link to="/register">
+            <button>Register</button>
+          </Link>
         </div>
       </header>
     </div>
