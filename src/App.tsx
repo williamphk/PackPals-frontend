@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { ThemeProvider } from "./context/ThemeContext";
-import { UserProvider } from "./context/UserContext";
 import { useUser } from "./context/UserContext";
 
 import Header from "./components/Header/Header.tsx";
@@ -19,50 +17,46 @@ const App: React.FC = () => {
   const { isAuthenticated } = useUser();
 
   return (
-    <ThemeProvider>
-      <UserProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublicRoute isAuthenticated={isAuthenticated}>
-                  <Homepage />
-                </PublicRoute>
-              }
-            />
+    <Router>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PublicRoute isAuthenticated={isAuthenticated}>
+              <Homepage />
+            </PublicRoute>
+          }
+        />
 
-            <Route
-              path="/login"
-              element={
-                <PublicRoute isAuthenticated={isAuthenticated}>
-                  <Login />
-                </PublicRoute>
-              }
-            />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute isAuthenticated={isAuthenticated}>
+              <Login />
+            </PublicRoute>
+          }
+        />
 
-            <Route
-              path="/register"
-              element={
-                <PublicRoute isAuthenticated={isAuthenticated}>
-                  <Register />
-                </PublicRoute>
-              }
-            />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute isAuthenticated={isAuthenticated}>
+              <Register />
+            </PublicRoute>
+          }
+        />
 
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute isAuthenticated={isAuthenticated}>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </Router>
-      </UserProvider>
-    </ThemeProvider>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
 };
 
