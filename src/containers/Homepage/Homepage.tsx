@@ -1,0 +1,48 @@
+import React from "react";
+import styles from "./Homepage.module.css";
+
+const Homepage: React.FC = () => {
+  return (
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.logo}>Logo</div>
+        <div className={styles.authButtons}>
+          <button>Login</button>
+          <button>Signup</button>
+        </div>
+      </header>
+
+      <section className={styles.mainContent}>
+        <h1 className={styles.headline}>Headline</h1>
+        <p className={styles.supportingHeadline}>Supporting headline</p>
+        <button className={styles.signupButton}>Signup Now</button>
+        <div className={styles.screenshot}>Platform Screenshot</div>
+      </section>
+
+      <section className={styles.features}>
+        <div className={styles.feature}>
+          <div className={styles.featureBox}></div>
+          <p>Description</p>
+        </div>
+        <div className={styles.feature}>
+          <div className={styles.featureBox}></div>
+          <p>Description</p>
+        </div>
+        <div className={styles.feature}>
+          <div className={styles.featureBox}></div>
+          <p>Description</p>
+        </div>
+      </section>
+
+      <footer className={styles.footer}>
+        <span>PackPals</span>
+        <span>About</span>
+        <span>Term of Use</span>
+        <span>Privacy</span>
+        <span>Copyright</span>
+      </footer>
+    </div>
+  );
+};
+
+export default Homepage;
