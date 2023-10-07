@@ -1,0 +1,36 @@
+.dashboard-container {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+nav button {
+  margin-left: 1rem;
+}
+
+.create-match .input-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.matches-section .match-category {
+  margin-bottom: 2rem;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
