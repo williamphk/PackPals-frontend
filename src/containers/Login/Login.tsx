@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import styles from "./Login.module.css";
 import { login } from "../../services/auth";
-
-import "./Login.module.css";
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,16 +15,16 @@ const Login: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(formData);
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
+    <div className={styles.container}>
+      <h2 className={styles.title}>Login</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.inputGroup}>
           <label>Email</label>
           <input
             type="email"
@@ -34,7 +33,7 @@ const Login: React.FC = () => {
             required
           />
         </div>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label>Password</label>
           <input
             type="password"
@@ -43,7 +42,9 @@ const Login: React.FC = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.loginButton}>
+          Login
+        </button>
       </form>
     </div>
   );
