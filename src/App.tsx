@@ -13,7 +13,7 @@ import Footer from "./components/Footer/Footer.tsx";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 
-import "./App.css";
+import styles from "./App.module.css";
 
 const App: React.FC = () => {
   const { isAuthenticated, setUser } = useUser();
@@ -29,43 +29,45 @@ const App: React.FC = () => {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PublicRoute isAuthenticated={isAuthenticated}>
-              <Homepage />
-            </PublicRoute>
-          }
-        />
+      <main className={styles.main}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PublicRoute isAuthenticated={isAuthenticated}>
+                <Homepage />
+              </PublicRoute>
+            }
+          />
 
-        <Route
-          path="/login"
-          element={
-            <PublicRoute isAuthenticated={isAuthenticated}>
-              <Login />
-            </PublicRoute>
-          }
-        />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute isAuthenticated={isAuthenticated}>
+                <Login />
+              </PublicRoute>
+            }
+          />
 
-        <Route
-          path="/register"
-          element={
-            <PublicRoute isAuthenticated={isAuthenticated}>
-              <Register />
-            </PublicRoute>
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute isAuthenticated={isAuthenticated}>
+                <Register />
+              </PublicRoute>
+            }
+          />
 
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </main>
       <Footer />
     </Router>
   );

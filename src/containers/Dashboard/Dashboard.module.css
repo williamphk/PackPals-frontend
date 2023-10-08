@@ -1,6 +1,7 @@
 .dashboardContainer {
-  font-family: Arial, sans-serif;
-  padding: 2rem;
+  padding: 1rem;
+  width: 100vw;
+  height: 70vh;
 }
 
 .createMatch .inputGroup {

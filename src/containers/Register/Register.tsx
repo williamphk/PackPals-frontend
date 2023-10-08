@@ -25,7 +25,7 @@ const Register: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Register</h1>
+      <h2 className={styles.title}>Register</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="email">Email:</label>
