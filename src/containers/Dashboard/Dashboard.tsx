@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Dashboard.module.css";
-import { createMatch, getOngoingMatches } from "../../services/match";
+import { getPotentialMatches, getOngoingMatches } from "../../services/match";
 import { Match } from "../../models/Match";
+import PotentialMatches from "./PotentialMatches/PotentialMatches";
 
 const Dashboard: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,10 @@ const Dashboard: React.FC = () => {
   });
 
   const [ongoingMatches, setOngoingMatches] = useState([] as Match[]);
+  const [potentialMatches, setPotentialMatches] = useState([] as Match[]);
+  const [isDashboardVisible, setIsDashboardVisible] = useState(true);
+  const [isPotentialMatchesVisible, setIsPotentialMatchesVisible] =
+    useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -20,7 +25,10 @@ const Dashboard: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    await createMatch(formData);
+    const result = await getPotentialMatches(formData.product_name);
+    setPotentialMatches(result);
+    setIsDashboardVisible(false);
+    setIsPotentialMatchesVisible(true);
   };
 
   useEffect(() => {
@@ -55,39 +63,49 @@ const Dashboard: React.FC = () => {
         </form>
       </section>
 
-      <section className={styles.matchesSection}>
-        <div className={styles.matchCategory}>
-          <h3>Recent Matches</h3>
-          <ul>
-            <li>User name Product name</li>
-            <li>User name Product name</li>
-            <li>User name Product name</li>
-            <li>User name Product name</li>
-          </ul>
-          <button>See more</button>
-        </div>
-      </section>
+      {isDashboardVisible && (
+        <div>
+          <section className={styles.matchesSection}>
+            <div className={styles.matchCategory}>
+              <h3>Recent Matches</h3>
+              <ul>
+                <li>User name Product name</li>
+                <li>User name Product name</li>
+                <li>User name Product name</li>
+                <li>User name Product name</li>
+              </ul>
+              <button>See more</button>
+            </div>
+          </section>
 
-      <section className={styles.matchesSection}>
-        <div className={styles.matchCategory}>
-          <h3>Ongoing Matches</h3>
-          <ul>{ongoingMatchesItems}</ul>
-          <button>See more</button>
-        </div>
-      </section>
+          <section className={styles.matchesSection}>
+            <div className={styles.matchCategory}>
+              <h3>Ongoing Matches</h3>
+              <ul>{ongoingMatchesItems}</ul>
+              <button>See more</button>
+            </div>
+          </section>
 
-      <section className={styles.matchesSection}>
-        <div className={styles.matchCategory}>
-          <h3>You Might Like</h3>
-          <ul>
-            <li>User name Product name</li>
-            <li>User name Product name</li>
-            <li>User name Product name</li>
-            <li>User name Product name</li>
-          </ul>
-          <button>See more</button>
+          <section className={styles.matchesSection}>
+            <div className={styles.matchCategory}>
+              <h3>You Might Like</h3>
+              <ul>
+                <li>User name Product name</li>
+                <li>User name Product name</li>
+                <li>User name Product name</li>
+                <li>User name Product name</li>
+              </ul>
+              <button>See more</button>
+            </div>
+          </section>
         </div>
-      </section>
+      )}
+      {isPotentialMatchesVisible && (
+        <PotentialMatches
+          formData={formData}
+          potentialMatches={potentialMatches}
+        />
+      )}
     </div>
   );
 };

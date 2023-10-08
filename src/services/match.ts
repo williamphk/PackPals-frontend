@@ -18,3 +18,14 @@ export const getOngoingMatches = async (): Promise<Match[]> => {
   const response = await api.get(`/users/${userId}/ongoing`);
   return response.data;
 };
+
+export const getPotentialMatches = async (
+  keyword: string
+): Promise<Match[]> => {
+  const user = localStorage.getItem("user");
+  if (!user) {
+    throw new Error("User not found");
+  }
+  const response = await api.get(`/matches/${keyword}`);
+  return response.data;
+};

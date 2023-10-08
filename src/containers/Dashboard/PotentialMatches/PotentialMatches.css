@@ -1,0 +1,50 @@
+.potentialMatchesContainer {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.matchItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin-right: 10px;
+}
+
+.userName,
+.productName {
+  flex: 1;
+}
+
+.viewProfileButton,
+.connectButton {
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.connectButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.hostMatchButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: white;
+  cursor: pointer;
+}
