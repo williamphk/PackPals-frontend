@@ -1,12 +1,16 @@
 .dashboardContainer {
   padding: 1rem;
   width: 100vw;
-  height: 70vh;
+  height: 100%;
 }
 
 .createMatch .inputGroup {
   display: flex;
   gap: 1rem;
+}
+
+.inputGroup input {
+  width: 30%;
 }
 
 .matchesSection .matchCategory {
