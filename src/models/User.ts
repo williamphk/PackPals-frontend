@@ -3,7 +3,6 @@ export interface User {
   first_name: string;
   last_name: string;
   email: string;
-  created_date: Date;
 }
 
 export const getFullName = (user: User) => {

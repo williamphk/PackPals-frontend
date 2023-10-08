@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { login } from "../../services/auth";
+import { useUser } from "../../context/UserContext";
 
 const Login: React.FC = () => {
+  const { setUser } = useUser();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,9 +18,16 @@ const Login: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    login(formData);
+    const result = await login(formData);
+    const user = {
+      email: result.email,
+      firstName: result.first_name,
+      lastName: result.last_name,
+      id: result.id,
+    };
+    setUser(user);
   };
 
   return (

@@ -16,6 +16,10 @@ export interface LoginResponse {
   message: string;
   token?: string;
   refreshToken?: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  id: string;
 }
 
 export interface TokenResponse {
@@ -33,6 +37,7 @@ export const login = async (data: LoginData): Promise<LoginResponse> => {
   if (response.data.token) {
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("refreshToken", response.data.refreshToken);
+    localStorage.setItem("user", JSON.stringify(response.data.user));
   }
   return response.data;
 };
