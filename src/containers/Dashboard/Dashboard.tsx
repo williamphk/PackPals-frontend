@@ -1,20 +1,12 @@
 import React from "react";
-import "./Dashboard.module.css";
+import styles from "./Dashboard.module.css";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="dashboard-container">
-      <header>
-        <div className="logo">PackPals</div>
-        <nav>
-          <button>Profile</button>
-          <button>Logout</button>
-        </nav>
-      </header>
-
-      <section className="create-match">
+    <div className={styles.dashboardContainer}>
+      <section className={styles.createMatch}>
         <h2>Create Match</h2>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label>Interested Item:</label>
           <input
             type="text"
@@ -24,8 +16,8 @@ const Dashboard: React.FC = () => {
         </div>
       </section>
 
-      <section className="matches-section">
-        <div className="match-category newly-matched">
+      <section className={styles.matchesSection}>
+        <div className={styles.matchCategory}>
           <h3>Newly Matched</h3>
           <ul>
             <li>User name</li>
@@ -36,18 +28,6 @@ const Dashboard: React.FC = () => {
           <button>See more</button>
         </div>
       </section>
-
-      <footer>
-        <div className="footer-content">
-          <span>© PackPals</span>
-          <ul>
-            <li>About</li>
-            <li>Term of Use</li>
-            <li>Privacy</li>
-            <li>Copyright</li>
-          </ul>
-        </div>
-      </footer>
     </div>
   );
 };
