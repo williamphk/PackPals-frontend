@@ -31,6 +31,10 @@ const Dashboard: React.FC = () => {
     getMatches();
   }, []);
 
+  const ongoingMatchesItems = ongoingMatches.map((match) => (
+    <li key={match._id}>{match.product_name}</li>
+  ));
+
   return (
     <div className={styles.dashboardContainer}>
       <section className={styles.createMatch}>
@@ -67,11 +71,7 @@ const Dashboard: React.FC = () => {
       <section className={styles.matchesSection}>
         <div className={styles.matchCategory}>
           <h3>Ongoing Matches</h3>
-          <ul>
-            {ongoingMatches.map((match) => (
-              <li key={match.id}>{match.product_name}</li>
-            ))}
-          </ul>
+          <ul>{ongoingMatchesItems}</ul>
           <button>See more</button>
         </div>
       </section>
