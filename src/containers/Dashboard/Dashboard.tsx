@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Dashboard.module.css";
-import { createMatch } from "../../services/match";
+import { createMatch, getOngoingMatches } from "../../services/match";
+import { Match } from "../../models/Match";
 
 const Dashboard: React.FC = () => {
   const [formData, setFormData] = useState({
     product_name: "",
   });
+
+  const [ongoingMatches, setOngoingMatches] = useState([] as Match[]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -16,8 +19,17 @@ const Dashboard: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData);
     await createMatch(formData);
   };
+
+  useEffect(() => {
+    const getMatches = async () => {
+      const matches = await getOngoingMatches();
+      setOngoingMatches(matches);
+    };
+    getMatches();
+  }, []);
 
   return (
     <div className={styles.dashboardContainer}>
@@ -56,10 +68,9 @@ const Dashboard: React.FC = () => {
         <div className={styles.matchCategory}>
           <h3>Ongoing Matches</h3>
           <ul>
-            <li>Product name</li>
-            <li>Product name</li>
-            <li>Product name</li>
-            <li>Product name</li>
+            {ongoingMatches.map((match) => (
+              <li key={match.id}>{match.product_name}</li>
+            ))}
           </ul>
           <button>See more</button>
         </div>
