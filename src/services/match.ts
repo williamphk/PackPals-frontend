@@ -5,5 +5,5 @@ export interface CreateMatchData {
 }
 
 export const createMatch = async (data: CreateMatchData): Promise<void> => {
-  await api.post("/match", data);
+  await api.post("/matches", data);
 };

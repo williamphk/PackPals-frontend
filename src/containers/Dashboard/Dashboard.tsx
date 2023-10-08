@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Dashboard.module.css";
+import { createMatch } from "../../services/match";
 
 const Dashboard: React.FC = () => {
+  const [formData, setFormData] = useState({
+    product_name: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await createMatch(formData);
+  };
+
   return (
     <div className={styles.dashboardContainer}>
       <section className={styles.createMatch}>
         <h2>Create Match</h2>
-        <div className={styles.inputGroup}>
-          <label>Interested Item:</label>
-          <input
-            type="text"
-            placeholder="Enter the product or deal you're interested in..."
-          />
-          <button>Find Matches</button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.inputGroup}>
+            <label>Interested Item:</label>
+            <input
+              type="text"
+              name="product_name"
+              value={formData.product_name}
+              onChange={handleChange}
+              required
+              placeholder="Enter the product or deal you're interested in..."
+            />
+            <button type="submit">Find Matches</button>
+          </div>
+        </form>
       </section>
 
       <section className={styles.matchesSection}>
