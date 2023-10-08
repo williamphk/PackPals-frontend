@@ -26,8 +26,11 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
       <h2>Potential Matches</h2>
       {potentialMatches.map((match) => (
         <div key={match._id} className="matchItem">
-          <div className="userAvatar"></div>
           <div className="productName">{match.product_name}</div>
+          <div className="productName">
+            {`${match.requesterDetails?.first_name}
+            ${match.requesterDetails?.last_name}`}
+          </div>
           <button className="viewProfileButton">View Profile</button>
           <button className="connectButton">Connect</button>
         </div>

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Register.module.css";
 import { register } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +23,7 @@ const Register: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    register(formData);
+    register(formData).then(() => navigate("/login"));
   };
 
   return (
