@@ -37,7 +37,13 @@ export const login = async (data: LoginData): Promise<LoginResponse> => {
   if (response.data.token) {
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("refreshToken", response.data.refreshToken);
-    localStorage.setItem("user", JSON.stringify(response.data.user));
+    const user = {
+      first_name: response.data.first_name,
+      last_name: response.data.last_name,
+      email: response.data.email,
+      id: response.data.id,
+    };
+    localStorage.setItem("user", JSON.stringify(user));
   }
   return response.data;
 };

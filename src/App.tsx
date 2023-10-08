@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { useUser } from "./context/UserContext";
@@ -14,7 +15,15 @@ import PublicRoute from "./routes/PublicRoute";
 import "./App.css";
 
 const App: React.FC = () => {
-  const { isAuthenticated } = useUser();
+  const { isAuthenticated, setUser } = useUser();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      setUser(parsedUser);
+    }
+  }, [setUser]);
 
   return (
     <Router>
