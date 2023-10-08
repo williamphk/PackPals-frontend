@@ -25,14 +25,6 @@ const Homepage: React.FC = () => {
           <p>Description</p>
         </div>
       </section>
-
-      <footer className={styles.footer}>
-        <span>PackPals</span>
-        <span>About</span>
-        <span>Term of Use</span>
-        <span>Privacy</span>
-        <span>Copyright</span>
-      </footer>
     </div>
   );
 };

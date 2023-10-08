@@ -56,11 +56,3 @@
   height: 150px;
   margin: 0 auto 10px;
 }
-
-.footer {
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #ccc;
-  padding-top: 20px;
-  margin-top: 50px;
-}

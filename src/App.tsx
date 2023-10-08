@@ -8,6 +8,7 @@ import Homepage from "./containers/Homepage/Homepage.tsx";
 import Register from "./containers/Register/Register.tsx";
 import Login from "./containers/Login/Login.tsx";
 import Dashboard from "./containers/Dashboard/Dashboard.tsx";
+import Footer from "./components/Footer/Footer.tsx";
 
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -65,6 +66,7 @@ const App: React.FC = () => {
           }
         />
       </Routes>
+      <Footer />
     </Router>
   );
 };
