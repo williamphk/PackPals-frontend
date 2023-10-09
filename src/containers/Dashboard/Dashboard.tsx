@@ -3,6 +3,7 @@ import styles from "./Dashboard.module.css";
 import { getPotentialMatches, getOngoingMatches } from "../../services/match";
 import { Match } from "../../models/Match";
 import PotentialMatches from "./PotentialMatches/PotentialMatches";
+import NoPotentialMatches from "./NoPotentialMatches/NoPotentialMatches";
 
 const Dashboard: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const Dashboard: React.FC = () => {
   const [isDashboardVisible, setIsDashboardVisible] = useState(true);
   const [isPotentialMatchesVisible, setIsPotentialMatchesVisible] =
     useState(false);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -29,6 +31,9 @@ const Dashboard: React.FC = () => {
     setPotentialMatches(result);
     setIsDashboardVisible(false);
     setIsPotentialMatchesVisible(true);
+    if (result.length === 0) {
+      setMessage(result as any);
+    }
   };
 
   useEffect(() => {
@@ -100,11 +105,14 @@ const Dashboard: React.FC = () => {
           </section>
         </div>
       )}
-      {isPotentialMatchesVisible && (
+      {isPotentialMatchesVisible && Array.isArray(potentialMatches) && (
         <PotentialMatches
           formData={formData}
           potentialMatches={potentialMatches}
         />
+      )}
+      {isPotentialMatchesVisible && !Array.isArray(potentialMatches) && (
+        <NoPotentialMatches message={message} />
       )}
     </div>
   );
