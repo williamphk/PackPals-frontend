@@ -5,14 +5,12 @@ export interface CreateMatchData {
   product_name: string;
 }
 
-export interface CreateMatchResponse {
+export interface response {
   message: string;
   matchId: string;
 }
 
-export const createMatch = async (
-  data: CreateMatchData
-): Promise<CreateMatchResponse> => {
+export const createMatch = async (data: CreateMatchData): Promise<response> => {
   const response = await api.post("/matches", data);
   return response.data;
 };
@@ -35,5 +33,10 @@ export const getPotentialMatches = async (
     throw new Error("User not found");
   }
   const response = await api.get(`/matches/${keyword}`);
+  return response.data;
+};
+
+export const acceptMatch = async (matchId: string): Promise<response> => {
+  const response = await api.post(`matches/${matchId}/accept`);
   return response.data;
 };
