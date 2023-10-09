@@ -5,8 +5,16 @@ export interface CreateMatchData {
   product_name: string;
 }
 
-export const createMatch = async (data: CreateMatchData): Promise<void> => {
-  await api.post("/matches", data);
+export interface CreateMatchResponse {
+  message: string;
+  matchId: string;
+}
+
+export const createMatch = async (
+  data: CreateMatchData
+): Promise<CreateMatchResponse> => {
+  const response = await api.post("/matches", data);
+  return response.data;
 };
 
 export const getOngoingMatches = async (): Promise<Match[]> => {

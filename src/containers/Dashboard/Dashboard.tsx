@@ -112,7 +112,7 @@ const Dashboard: React.FC = () => {
         />
       )}
       {isPotentialMatchesVisible && !Array.isArray(potentialMatches) && (
-        <NoPotentialMatches message={message} />
+        <NoPotentialMatches formData={formData} message={message} />
       )}
     </div>
   );

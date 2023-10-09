@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { createMatch } from "../../../services/match";
 import { Match } from "../../../models/Match";
 
