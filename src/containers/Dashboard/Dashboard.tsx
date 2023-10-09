@@ -31,8 +31,8 @@ const Dashboard: React.FC = () => {
     setPotentialMatches(result);
     setIsDashboardVisible(false);
     setIsPotentialMatchesVisible(true);
-    if (result.length === 0) {
-      setMessage(result as any);
+    if (!Array.isArray(result)) {
+      setMessage(result);
     }
   };
 
