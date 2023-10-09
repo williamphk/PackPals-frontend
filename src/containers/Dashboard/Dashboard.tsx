@@ -70,7 +70,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className={styles.dashboardContainer}>
       <section className={styles.createMatch}>
-        <h2>Create Match</h2>
+        <h2>Find Matches</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label>Interested Item:</label>

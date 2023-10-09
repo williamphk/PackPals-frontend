@@ -21,6 +21,13 @@ export const getRecentMatches = async (): Promise<Match[]> => {
   return response.data;
 };
 
+export const getRecentMatchesByReqesterId = async (
+  requesterId: string
+): Promise<Match[]> => {
+  const response = await api.get(`/users/${requesterId}/recent`);
+  return response.data;
+};
+
 export const getYouMightLike = async (): Promise<Match[]> => {
   const user = localStorage.getItem("user");
   if (!user) {
