@@ -19,12 +19,12 @@ const NoPotentialMatches: React.FC<PotentialMatchesProps> = ({
 }) => {
   const navigate = useNavigate();
   const [isMatchHosted, setIsMatchHosted] = useState(false);
-  const [matchHostedMessage, setmatchHostedMessage] = useState("");
+  const [matchHostedMessage, setMatchHostedMessage] = useState("");
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const result = await createMatch(formData);
-    setmatchHostedMessage(result.message);
+    setMatchHostedMessage(result.message);
     setIsMatchHosted(true);
   };
 
@@ -42,7 +42,7 @@ const NoPotentialMatches: React.FC<PotentialMatchesProps> = ({
           <h2>No Potential Matches</h2>
           <p>{message}</p>
           <button className="homeButton" type="submit" onClick={handleSubmit}>
-            Host a Match
+            Host a match
           </button>
           <button
             className="homeButton"
