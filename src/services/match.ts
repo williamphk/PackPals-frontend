@@ -15,16 +15,6 @@ export const createMatch = async (data: CreateMatchData): Promise<response> => {
   return response.data;
 };
 
-export const getOngoingMatches = async (): Promise<Match[]> => {
-  const user = localStorage.getItem("user");
-  if (!user) {
-    throw new Error("User not found");
-  }
-  const userId = JSON.parse(user).id;
-  const response = await api.get(`/users/${userId}/ongoing`);
-  return response.data;
-};
-
 export const getPotentialMatches = async (
   keyword: string
 ): Promise<Match[]> => {

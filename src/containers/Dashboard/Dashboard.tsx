@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Dashboard.module.css";
-import { getPotentialMatches, getOngoingMatches } from "../../services/match";
+import { getPotentialMatches } from "../../services/match";
+import {
+  getOngoingMatches,
+  getRecentMatches,
+  getYouMightLike,
+} from "../../services/user";
 import { Match } from "../../models/Match";
 import PotentialMatches from "./PotentialMatches/PotentialMatches";
 import NoPotentialMatches from "./NoPotentialMatches/NoPotentialMatches";
@@ -10,7 +15,9 @@ const Dashboard: React.FC = () => {
     product_name: "",
   });
 
+  const [recentMatches, setRecentMatches] = useState([] as Match[]);
   const [ongoingMatches, setOngoingMatches] = useState([] as Match[]);
+  const [youMightLike, setYouMightLike] = useState([] as Match[]);
   const [potentialMatches, setPotentialMatches] = useState([] as Match[]);
   const [isDashboardVisible, setIsDashboardVisible] = useState(true);
   const [isPotentialMatchesVisible, setIsPotentialMatchesVisible] =
@@ -38,13 +45,25 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     const getMatches = async () => {
-      const matches = await getOngoingMatches();
-      setOngoingMatches(matches);
+      const ongoingMatches = await getOngoingMatches();
+      setOngoingMatches(ongoingMatches);
+      const recentMatches = await getRecentMatches();
+      setRecentMatches(recentMatches);
+      const youMightLike = await getYouMightLike();
+      setYouMightLike(youMightLike);
     };
     getMatches();
   }, []);
 
+  const recentMatchesItems = recentMatches.map((match) => (
+    <li key={match._id}>{match.product_name}</li>
+  ));
+
   const ongoingMatchesItems = ongoingMatches.map((match) => (
+    <li key={match._id}>{match.product_name}</li>
+  ));
+
+  const youMightLikeItems = youMightLike.map((match) => (
     <li key={match._id}>{match.product_name}</li>
   ));
 
@@ -74,10 +93,7 @@ const Dashboard: React.FC = () => {
             <div className={styles.matchCategory}>
               <h3>Recent Matches</h3>
               <ul>
-                <li>User name Product name</li>
-                <li>User name Product name</li>
-                <li>User name Product name</li>
-                <li>User name Product name</li>
+                <li>{recentMatchesItems}</li>
               </ul>
               <button>See more</button>
             </div>
@@ -95,10 +111,7 @@ const Dashboard: React.FC = () => {
             <div className={styles.matchCategory}>
               <h3>You Might Like</h3>
               <ul>
-                <li>User name Product name</li>
-                <li>User name Product name</li>
-                <li>User name Product name</li>
-                <li>User name Product name</li>
+                <li>{youMightLikeItems}</li>
               </ul>
               <button>See more</button>
             </div>
