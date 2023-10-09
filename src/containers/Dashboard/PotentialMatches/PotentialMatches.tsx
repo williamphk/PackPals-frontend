@@ -40,11 +40,11 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
   };
 
   if (isMatchAccepted) {
-    return <MatchHosted message={matchAcceptedMessage} />;
+    return <MatchAccepted message={matchAcceptedMessage} />;
   }
 
   if (isMatchHosted) {
-    return <MatchAccepted message={matchHostedMessage} />;
+    return <MatchHosted message={matchHostedMessage} />;
   }
 
   return (

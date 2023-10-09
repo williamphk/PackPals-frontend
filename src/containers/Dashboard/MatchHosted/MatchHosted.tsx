@@ -17,8 +17,7 @@ const MatchHosted: React.FC<PotentialMatchesProps> = ({ message }) => {
 
   return (
     <div className="matchHostedContainer">
-      <h2>Matches Hosted Successfully</h2>
-      <p>{message}</p>
+      <h2>{message}</h2>
       <button className="homeButton" type="submit" onClick={handleHomeButton}>
         Return to Home
       </button>
