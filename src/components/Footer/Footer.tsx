@@ -1,14 +1,33 @@
 import React from "react";
-import styles from "./Footer.module.css";
 
 const Footer: React.FC = () => {
   return (
-    <footer className={styles.footer}>
-      <span>PackPals</span>
-      <span>About</span>
-      <span>Term of Use</span>
-      <span>Privacy</span>
-      <span>Copyright</span>
+    <footer className="bg-gray-300 py-6 mt-6">
+      <div className="container mx-auto text-center">
+        <p className="mb-4 font-bold text-xl">PackPals</p>
+        <ul className="flex justify-center space-x-6">
+          <li>
+            <a href="#" className="hover:text-gray-400">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:text-gray-400">
+              Term of Use
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:text-gray-400">
+              Privacy
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:text-gray-400">
+              Copyright
+            </a>
+          </li>
+        </ul>
+      </div>
     </footer>
   );
 };

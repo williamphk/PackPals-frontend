@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
+import logo from "../../assets/logo.png";
+
 const Header: React.FC = () => {
   const { isAuthenticated, setUser } = useUser();
   const navigate = useNavigate();
@@ -20,8 +22,9 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link
           to="/"
-          className="text-xl font-bold text-gray-800 hover:text-gray-600"
+          className="text-xl font-bold text-gray-800 hover:text-gray-600 flex items-center gap-2"
         >
+          <img src={logo} height={50} width={50} alt="PackPals Logo" />
           PackPals
         </Link>
         <div className="space-x-4">

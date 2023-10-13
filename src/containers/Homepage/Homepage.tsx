@@ -28,7 +28,7 @@ const Homepage: React.FC = () => {
               alt="Platform Screenshot"
               height={400}
               width={800}
-              className="rounded-xl"
+              className="rounded-xl w-[50vw]"
             />
           </div>
         </div>
