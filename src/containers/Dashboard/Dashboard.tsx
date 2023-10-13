@@ -55,25 +55,28 @@ const Dashboard: React.FC = () => {
     getMatches();
   }, []);
 
-  const recentMatchesItems = recentMatches.map((match) => (
-    <li key={match._id}>{match.product_name}</li>
-  ));
+  const generateItems = (matches: Match[]) => {
+    if (matches.length === 0) {
+      return [<li className="text-gray-500">No matches found</li>];
+    }
+    return matches.map((match) => (
+      <li key={match._id}>{match.product_name}</li>
+    ));
+  };
 
-  const ongoingMatchesItems = ongoingMatches.map((match) => (
-    <li key={match._id}>{match.product_name}</li>
-  ));
-
-  const youMightLikeItems = youMightLike.map((match) => (
-    <li key={match._id}>{match.product_name}</li>
-  ));
+  const recentMatchesItems = generateItems(recentMatches);
+  const ongoingMatchesItems = generateItems(ongoingMatches);
+  const youMightLikeItems = generateItems(youMightLike);
 
   return (
-    <div className={styles.dashboardContainer}>
-      <section className={styles.createMatch}>
-        <h2>Find Matches</h2>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label>Interested Item:</label>
+    <div className="p-6">
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Find Matches</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-2" htmlFor="product_name">
+              Interested Item:
+            </label>
             <input
               type="text"
               name="product_name"
@@ -81,43 +84,51 @@ const Dashboard: React.FC = () => {
               onChange={handleChange}
               required
               placeholder="Enter the product or deal you're interested in..."
+              className="p-2 w-full border rounded-xl focus:border-blue-500 focus:outline-none"
+              id="product_name"
             />
-            <button type="submit">Find Matches</button>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            >
+              Find Matches
+            </button>
           </div>
         </form>
       </section>
 
       {isDashboardVisible && (
-        <div>
-          <section className={styles.matchesSection}>
-            <div className={styles.matchCategory}>
-              <h3>Recent Matches</h3>
-              <ul>
-                <li>{recentMatchesItems}</li>
-              </ul>
-              <button>See more</button>
-            </div>
-          </section>
-
-          <section className={styles.matchesSection}>
-            <div className={styles.matchCategory}>
-              <h3>Ongoing Matches</h3>
-              <ul>{ongoingMatchesItems}</ul>
-              <button>See more</button>
-            </div>
-          </section>
-
-          <section className={styles.matchesSection}>
-            <div className={styles.matchCategory}>
-              <h3>You Might Like</h3>
-              <ul>
-                <li>{youMightLikeItems}</li>
-              </ul>
-              <button>See more</button>
-            </div>
-          </section>
+        <div className="space-y-6">
+          {[
+            {
+              title: "Recent Matches",
+              items: recentMatchesItems,
+            },
+            {
+              title: "Ongoing Matches",
+              items: ongoingMatchesItems,
+            },
+            {
+              title: "You Might Like",
+              items: youMightLikeItems,
+            },
+          ].map((section) => (
+            <section
+              key={section.title}
+              className="bg-white p-6 rounded-xl shadow-md"
+            >
+              <h3 className="text-xl font-semibold mb-4">{section.title}</h3>
+              <ul className="space-y-2 mb-4">{section.items}</ul>
+              <button className="text-blue-500 focus:outline-none focus:text-blue-600">
+                See more
+              </button>
+            </section>
+          ))}
         </div>
       )}
+
       {isPotentialMatchesVisible && Array.isArray(potentialMatches) && (
         <PotentialMatches
           formData={formData}
