@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <Link to="/">
-          <div className={styles.logo}>Logo</div>
+          <div className={styles.logo}>PackPals</div>
         </Link>
         <div className={styles.authButtons}>
           {isAuthenticated ? (
