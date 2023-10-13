@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -17,27 +16,39 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <Link to="/">
-          <div className={styles.logo}>PackPals</div>
+    <header className="bg-white shadow-md">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <Link
+          to="/"
+          className="text-xl font-bold text-gray-800 hover:text-gray-600"
+        >
+          PackPals
         </Link>
-        <div className={styles.authButtons}>
+        <div className="space-x-4">
           {isAuthenticated ? (
-            <button onClick={handleLogout}>Logout</button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+            >
+              Logout
+            </button>
           ) : (
-            <div>
+            <div className="flex space-x-4">
               <Link to="/login">
-                <button>Login</button>
+                <button className="border border-gray-500 text-gray-500 px-5 py-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                  Login
+                </button>
               </Link>
               <Link to="/register">
-                <button>Register</button>
+                <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                  Register
+                </button>
               </Link>
             </div>
           )}
         </div>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 };
 

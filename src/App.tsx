@@ -13,8 +13,6 @@ import Footer from "./components/Footer/Footer.tsx";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 
-import styles from "./App.module.css";
-
 const App: React.FC = () => {
   const { isAuthenticated, setUser } = useUser();
 
@@ -29,7 +27,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Header />
-      <main className={styles.main}>
+      <main className="min-h-[80vh]">
         <Routes>
           <Route
             path="/"

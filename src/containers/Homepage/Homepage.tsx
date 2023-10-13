@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Homepage: React.FC = () => {
   return (
-    <div className="flex flex-col justify-center sm:py-12">
+    <div className="flex flex-col justify-center mx-6 mt-6">
       <section className="p-6 mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
         <div className="flex">
           <div>
