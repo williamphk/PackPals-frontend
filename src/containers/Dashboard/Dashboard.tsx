@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Dashboard.module.css";
 import { getPotentialMatches } from "../../services/match";
 import {
   getOngoingMatches,

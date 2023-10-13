@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import MatchHosted from "../MatchHosted/MatchHosted";
 
-import "./NoPotentialMatches.css";
-
 interface PotentialMatchesProps {
   formData: {
     product_name: string;
@@ -34,18 +32,22 @@ const NoPotentialMatches: React.FC<PotentialMatchesProps> = ({
   };
 
   return (
-    <div>
+    <div className="bg-gray-100 flex flex-col items-center justify-center">
       {isMatchHosted ? (
         <MatchHosted message={matchHostedMessage} />
       ) : (
-        <div className="noPotentialMatchesContainer">
-          <h2>No Potential Matches</h2>
-          <p>{message}</p>
-          <button className="homeButton" type="submit" onClick={handleSubmit}>
+        <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+          <h2 className="text-2xl font-semibold mb-4">No Potential Matches</h2>
+          <p className="text-gray-600 mb-6">{message}</p>
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full mb-2 hover:bg-blue-600 transition duration-150"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Host a match
           </button>
           <button
-            className="homeButton"
+            className="bg-gray-300 text-black py-2 px-4 rounded-lg w-full hover:bg-gray-400 transition duration-150"
             type="submit"
             onClick={handleHomeButton}
           >
