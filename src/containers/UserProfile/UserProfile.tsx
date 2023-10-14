@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./UserProfile.module.css";
 import { Match } from "../../models/Match";
 
 interface UserProfileProps {
