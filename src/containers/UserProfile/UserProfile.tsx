@@ -12,14 +12,12 @@ const UserProfile: React.FC<UserProfileProps> = ({ recentMatches }) => {
   ));
 
   return (
-    <div>
-      <section className={styles.matchesSection}>
-        <div className={styles.matchCategory}>
-          <h3>Recent Matches</h3>
-          <ul>
-            <li>{recentMatchesItems}</li>
-          </ul>
-        </div>
+    <div className="mt-6">
+      <section>
+        <h3 className="text-xl font-semibold mb-4 border-b pb-2">
+          Recent Matches
+        </h3>
+        <ul className="mt-4">{recentMatchesItems}</ul>
       </section>
     </div>
   );
