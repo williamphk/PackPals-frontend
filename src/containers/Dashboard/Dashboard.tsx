@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
           <div>
             <button
               type="submit"
-              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 transition duration-150"
             >
               Find Matches
             </button>
