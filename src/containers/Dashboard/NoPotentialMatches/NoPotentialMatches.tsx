@@ -31,30 +31,30 @@ const NoPotentialMatches: React.FC<PotentialMatchesProps> = ({
     navigate("/");
   };
 
+  if (isMatchHosted) {
+    return <MatchHosted message={matchHostedMessage} />;
+  }
+
   return (
     <div className="bg-gray-100 flex flex-col items-center justify-center">
-      {isMatchHosted ? (
-        <MatchHosted message={matchHostedMessage} />
-      ) : (
-        <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-semibold mb-4">No Potential Matches</h2>
-          <p className="text-gray-600 mb-6">{message}</p>
-          <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full mb-2 hover:bg-blue-600 transition duration-150"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Host a match
-          </button>
-          <button
-            className="bg-gray-300 text-black py-2 px-4 rounded-lg w-full hover:bg-gray-400 transition duration-150"
-            type="submit"
-            onClick={handleHomeButton}
-          >
-            Return to Home
-          </button>
-        </div>
-      )}
+      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h2 className="text-2xl font-semibold mb-4">No Potential Matches</h2>
+        <p className="text-gray-600 mb-6">{message}</p>
+        <button
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full mb-2 hover:bg-blue-600 transition duration-150"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Host a match
+        </button>
+        <button
+          className="bg-gray-300 text-black py-2 px-4 rounded-lg w-full hover:bg-gray-400 transition duration-150"
+          type="submit"
+          onClick={handleHomeButton}
+        >
+          Return to Home
+        </button>
+      </div>
     </div>
   );
 };
