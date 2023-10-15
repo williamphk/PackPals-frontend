@@ -63,7 +63,9 @@ const Dashboard: React.FC = () => {
 
   const generateItems = (matches: Match[]) => {
     if (matches.length === 0) {
-      return [<li className="text-gray-500">No matches found</li>];
+      return [
+        <li className="text-gray-500 dark:text-gray-300">No matches found</li>,
+      ];
     }
     return matches.map((match) => (
       <li key={match._id}>{match.product_name}</li>
