@@ -28,7 +28,7 @@ const App: React.FC = () => {
   return (
     <Router>
       {isAuthenticated && <Sidebar />}
-      <div className={`${isAuthenticated ? "ml-60 pl-4" : ""}`}>
+      <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
         <Header />
         <main className="min-h-[80vh]">
           <Routes>

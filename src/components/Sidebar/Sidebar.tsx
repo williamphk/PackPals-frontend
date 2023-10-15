@@ -2,7 +2,7 @@ import React from "react";
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="bg-white w-64 h-full fixed top-0 left-0 shadow-lg">
+    <div className="bg-white w-64 h-full fixed top-0 left-0 shadow-lg hidden md:block">
       <ul className="mt-2">
         <li className="mb-1">
           <a
