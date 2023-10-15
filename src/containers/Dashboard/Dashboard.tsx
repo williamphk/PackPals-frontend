@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { getPotentialMatches } from "../../services/match";
 import {
   getOngoingMatches,
   getRecentMatches,
   getYouMightLikeMatches,
 } from "../../services/user";
+
 import { Match } from "../../models/Match";
+
 import PotentialMatches from "./PotentialMatches/PotentialMatches";
 import NoPotentialMatches from "./NoPotentialMatches/NoPotentialMatches";
 
@@ -107,14 +111,17 @@ const Dashboard: React.FC = () => {
             {
               title: "Recent Matches",
               items: recentMatchesItems,
+              link: "/recent-matches",
             },
             {
               title: "Ongoing Matches",
               items: ongoingMatchesItems,
+              link: "/ongoing-matches",
             },
             {
               title: "You Might Like",
               items: youMightLikeItems,
+              link: "/you-might-like",
             },
           ].map((section) => (
             <section
@@ -123,9 +130,12 @@ const Dashboard: React.FC = () => {
             >
               <h3 className="text-xl font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2 mb-4">{section.items}</ul>
-              <button className="text-blue-500 focus:outline-none focus:text-blue-600">
+              <Link
+                to={section.link}
+                className="text-blue-500 focus:outline-none focus:text-blue-600"
+              >
                 See more
-              </button>
+              </Link>
             </section>
           ))}
         </div>
