@@ -19,7 +19,9 @@ const OngoingMatches: React.FC = () => {
 
   const generateItems = (matches: Match[]) => {
     if (matches.length === 0) {
-      return [<li className="text-gray-500">No matches found</li>];
+      return [
+        <li className="text-gray-500 dark:text-gray-300">No matches found</li>,
+      ];
     }
     return matches.map((match) => (
       <li key={match._id} className="flex justify-between">
@@ -51,11 +53,14 @@ const OngoingMatches: React.FC = () => {
   const ongoingMatchesItems = generateItems(ongoingMatches);
 
   return (
-    <div className="p-6">
+    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen">
       <h2 className="text-xl font-semibold mb-4">Ongoing Matches</h2>
       <div className="space-y-6">
         {ongoingMatchesItems.map((item, index) => (
-          <section key={index} className="bg-white p-6 rounded-xl shadow-md">
+          <section
+            key={index}
+            className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
+          >
             <ul className="space-y-2">{item}</ul>
           </section>
         ))}

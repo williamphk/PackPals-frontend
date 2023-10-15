@@ -20,7 +20,9 @@ const RecentMatches: React.FC = () => {
 
   const generateItems = (matches: Match[]) => {
     if (matches.length === 0) {
-      return [<li className="text-gray-500">No matches found</li>];
+      return [
+        <li className="text-gray-500 dark:text-gray-300">No matches found</li>,
+      ];
     }
     let email: string | undefined;
     for (let i = 0; i < matches.length; i++) {
@@ -39,11 +41,11 @@ const RecentMatches: React.FC = () => {
     return matches.map((match) => (
       <li key={match._id}>
         <p className="text-2xl font-bold">{match.product_name}</p>
-        <p className="text-gray-700">
+        <p>
           Requester: {match.requesterDetails?.first_name}{" "}
           {match.requesterDetails?.last_name}
         </p>
-        <p className="text-gray-700">
+        <p>
           Reqestee: {match.requesteeDetails?.first_name}{" "}
           {match.requesteeDetails?.last_name}
         </p>
@@ -59,11 +61,14 @@ const RecentMatches: React.FC = () => {
   const recentMatchesItems = generateItems(recentMatches);
 
   return (
-    <div className="p-6">
+    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen">
       <h2 className="text-xl font-semibold mb-4">Recent Matches</h2>
       <div className="space-y-6">
         {recentMatchesItems.map((item, index) => (
-          <section key={index} className="bg-white p-6 rounded-xl shadow-md">
+          <section
+            key={index}
+            className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
+          >
             <ul className="space-y-2">{item}</ul>
           </section>
         ))}

@@ -75,7 +75,7 @@ const Dashboard: React.FC = () => {
   const youMightLikeItems = generateItems(youMightLike);
 
   return (
-    <div className="p-6">
+    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen">
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Find Matches</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
               onChange={handleChange}
               required
               placeholder="Enter the product or deal you're interested in..."
-              className="p-2 w-full border rounded-xl focus:border-blue-500 focus:outline-none"
+              className="p-2 w-full border rounded-xl focus:border-blue-500 focus:outline-none dark:bg-gray-900 dark:text-white "
               id="product_name"
             />
           </div>
@@ -126,7 +126,7 @@ const Dashboard: React.FC = () => {
           ].map((section) => (
             <section
               key={section.title}
-              className="bg-white p-6 rounded-xl shadow-md"
+              className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
             >
               <h3 className="text-xl font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2 mb-4">{section.items}</ul>

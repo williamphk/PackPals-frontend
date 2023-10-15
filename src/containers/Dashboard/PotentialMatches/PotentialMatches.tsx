@@ -71,15 +71,15 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
   }
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">
       <h2 className="text-2xl font-semibold mb-4">Potential Matches</h2>
       {potentialMatches.map((match) => (
         <div
           key={match._id}
-          className="bg-white p-6 rounded-xl shadow-md mb-4 flex flex-col"
+          className="bg-white p-6 rounded-xl shadow-md mb-4 flex flex-col dark:bg-gray-700"
         >
           <h3 className="text-3xl font-bold mb-2">{match.product_name}</h3>
-          <p className="text-gray-700 mb-4">
+          <p className="text-gray-700 mb-4 dark:text-white">
             {match.requesterDetails?.first_name}{" "}
             {match.requesterDetails?.last_name}
           </p>

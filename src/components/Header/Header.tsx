@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white text-gray-800 shadow-md mb-6 dark:bg-gray-900 dark:text-white">
+    <header className="bg-white text-gray-800 shadow-md mb-1 dark:bg-gray-950 dark:text-white">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link
           to="/"
