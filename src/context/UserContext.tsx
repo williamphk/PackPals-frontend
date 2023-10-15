@@ -21,11 +21,10 @@ interface UserProviderProps {
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const isAuthenticated = user !== null;
 
   return (
-    <UserContext.Provider
-      value={{ user, setUser, isAuthenticated: user !== null }}
-    >
+    <UserContext.Provider value={{ user, setUser, isAuthenticated }}>
       {children}
     </UserContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { useUser } from "./context/UserContext";
@@ -20,6 +20,7 @@ import PublicRoute from "./routes/PublicRoute";
 
 const App: React.FC = () => {
   const { isAuthenticated, setUser } = useUser();
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -27,81 +28,88 @@ const App: React.FC = () => {
       const parsedUser = JSON.parse(user);
       setUser(parsedUser);
     }
+    setAuthLoading(false);
   }, [setUser]);
 
   return (
     <Router>
-      {isAuthenticated && <Sidebar />}
-      <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
-        <Header />
-        <main className="min-h-[80vh]">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublicRoute isAuthenticated={isAuthenticated}>
-                  <Homepage />
-                </PublicRoute>
-              }
-            />
+      {authLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          {isAuthenticated && <Sidebar />}
+          <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
+            <Header />
+            <main className="min-h-[80vh]">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <PublicRoute isAuthenticated={isAuthenticated}>
+                      <Homepage />
+                    </PublicRoute>
+                  }
+                />
 
-            <Route
-              path="/login"
-              element={
-                <PublicRoute isAuthenticated={isAuthenticated}>
-                  <Login />
-                </PublicRoute>
-              }
-            />
+                <Route
+                  path="/login"
+                  element={
+                    <PublicRoute isAuthenticated={isAuthenticated}>
+                      <Login />
+                    </PublicRoute>
+                  }
+                />
 
-            <Route
-              path="/register"
-              element={
-                <PublicRoute isAuthenticated={isAuthenticated}>
-                  <Register />
-                </PublicRoute>
-              }
-            />
+                <Route
+                  path="/register"
+                  element={
+                    <PublicRoute isAuthenticated={isAuthenticated}>
+                      <Register />
+                    </PublicRoute>
+                  }
+                />
 
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute isAuthenticated={isAuthenticated}>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <PrivateRoute isAuthenticated={isAuthenticated}>
+                      <Dashboard />
+                    </PrivateRoute>
+                  }
+                />
 
-            <Route
-              path="/recent-matches"
-              element={
-                <PrivateRoute isAuthenticated={isAuthenticated}>
-                  <RecentMatches />
-                </PrivateRoute>
-              }
-            />
+                <Route
+                  path="/recent-matches"
+                  element={
+                    <PrivateRoute isAuthenticated={isAuthenticated}>
+                      <RecentMatches />
+                    </PrivateRoute>
+                  }
+                />
 
-            <Route
-              path="/you-might-like"
-              element={
-                <PrivateRoute isAuthenticated={isAuthenticated}>
-                  <YouMightLikeMatches />
-                </PrivateRoute>
-              }
-            />
+                <Route
+                  path="/you-might-like"
+                  element={
+                    <PrivateRoute isAuthenticated={isAuthenticated}>
+                      <YouMightLikeMatches />
+                    </PrivateRoute>
+                  }
+                />
 
-            <Route
-              path="/ongoing-matches"
-              element={
-                <PrivateRoute isAuthenticated={isAuthenticated}>
-                  <OngoingMatches />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+                <Route
+                  path="/ongoing-matches"
+                  element={
+                    <PrivateRoute isAuthenticated={isAuthenticated}>
+                      <OngoingMatches />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </>
+      )}
     </Router>
   );
 };
