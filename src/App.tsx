@@ -12,6 +12,7 @@ import Register from "./containers/Register/Register.tsx";
 import Login from "./containers/Login/Login.tsx";
 import Dashboard from "./containers/Dashboard/Dashboard.tsx";
 import RecentMatches from "./containers/Dashboard/RecentMatches/RecentMatches.tsx";
+import YouMightLikeMatches from "./containers/Dashboard/YouMightLikeMatches/YouMightLikeMatches.tsx";
 
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -62,6 +63,15 @@ const App: React.FC = () => {
             />
 
             <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute isAuthenticated={isAuthenticated}>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
               path="/recent-matches"
               element={
                 <PrivateRoute isAuthenticated={isAuthenticated}>
@@ -71,10 +81,10 @@ const App: React.FC = () => {
             />
 
             <Route
-              path="/dashboard"
+              path="/you-might-like"
               element={
                 <PrivateRoute isAuthenticated={isAuthenticated}>
-                  <Dashboard />
+                  <YouMightLikeMatches />
                 </PrivateRoute>
               }
             />

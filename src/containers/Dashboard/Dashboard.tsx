@@ -3,7 +3,7 @@ import { getPotentialMatches } from "../../services/match";
 import {
   getOngoingMatches,
   getRecentMatches,
-  getYouMightLike,
+  getYouMightLikeMatches,
 } from "../../services/user";
 import { Match } from "../../models/Match";
 import PotentialMatches from "./PotentialMatches/PotentialMatches";
@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
       const recentMatches = await getRecentMatches();
       recentMatches.splice(5);
       setRecentMatches(recentMatches);
-      const youMightLike = await getYouMightLike();
+      const youMightLike = await getYouMightLikeMatches();
       youMightLike.splice(5);
       setYouMightLike(youMightLike);
     };

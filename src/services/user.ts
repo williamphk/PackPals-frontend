@@ -28,7 +28,7 @@ export const getRecentMatchesByReqesterId = async (
   return response.data;
 };
 
-export const getYouMightLike = async (): Promise<Match[]> => {
+export const getYouMightLikeMatches = async (): Promise<Match[]> => {
   const user = localStorage.getItem("user");
   if (!user) {
     throw new Error("User not found");
