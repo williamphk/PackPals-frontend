@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const About: React.FC = () => {
   return (
-    <div className="p-6 bg-white dark:bg-gray-800 transition-colors duration-300 rounded-md shadow-md min-h-screen">
+    <div className="p-6 bg-white dark:bg-gray-900 dark:text-white transition-colors duration-200 rounded-md shadow-md min-h-screen">
       <h1 className="text-3xl font-bold mb-6">About PackPals</h1>
 
       <section className="mb-6">
