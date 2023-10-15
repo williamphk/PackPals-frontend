@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import screenshot from "../../assets/screenshot.png";
 
 const Homepage: React.FC = () => {
   return (
-    <div className="flex flex-col justify-center mx-6 mt-6">
+    <div className="flex flex-col justify-center m-6">
       <section className="p-6 mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Welcome to PackPals
@@ -22,13 +23,11 @@ const Homepage: React.FC = () => {
               </button>
             </Link>
           </div>
-          <div className="mt-6 text-center text-gray-400 italic">
+          <div className="text-center text-gray-400">
             <img
-              src="/path/to/your/screenshot.png"
+              src={screenshot}
               alt="Platform Screenshot"
-              height={400}
-              width={800}
-              className="rounded-xl w-[50vw]"
+              className="rounded-xl w-[100vw] min-w-[50vw] border-2 border-gray-200"
             />
           </div>
         </div>
