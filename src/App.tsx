@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer.tsx";
 import Sidebar from "./components/Sidebar/Sidebar.tsx";
 
 import Homepage from "./containers/Homepage/Homepage.tsx";
+import About from "./containers/About/About.tsx";
 import Register from "./containers/Register/Register.tsx";
 import Login from "./containers/Login/Login.tsx";
 import Dashboard from "./containers/Dashboard/Dashboard.tsx";
@@ -50,6 +51,8 @@ const App: React.FC = () => {
                     </PublicRoute>
                   }
                 />
+
+                <Route path="/about" element={<About />} />
 
                 <Route
                   path="/login"
