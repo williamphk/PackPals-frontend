@@ -75,6 +75,7 @@ const RecentMatches: React.FC = () => {
           <SkeletonMatch />
           <SkeletonMatch />
           <SkeletonMatch />
+          <SkeletonMatch />
         </div>
       ) : (
         <div className="space-y-6">

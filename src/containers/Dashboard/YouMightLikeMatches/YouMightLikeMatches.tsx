@@ -8,6 +8,7 @@ import { Match } from "../../../models/Match";
 
 import UserProfile from "../../UserProfile/UserProfile";
 import MatchAccepted from "../MatchAccepted/MatchAccepted";
+import SkeletonMatch from "../SkeletonMatch";
 
 const YouMightLikeMatches: React.FC = () => {
   const [youMightLikeMatches, setYouMightLikeMatches] = useState([] as Match[]);
@@ -17,11 +18,13 @@ const YouMightLikeMatches: React.FC = () => {
   const [viewedProfileIndex, setViewedProfileIndex] = useState<number | null>(
     null
   );
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getMatches = async () => {
       const youMightLikeMatches = await getYouMightLikeMatches();
       setYouMightLikeMatches(youMightLikeMatches);
+      setIsLoading(false);
     };
     getMatches();
   }, []);
@@ -90,16 +93,27 @@ const YouMightLikeMatches: React.FC = () => {
   return (
     <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-200">
       <h2 className="text-xl font-semibold mb-4">You Might Like</h2>
-      <div className="space-y-6">
-        {youMightLikeMatchesItems.map((item) => (
-          <section
-            key="YouMightLike Matches"
-            className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
-          >
-            <ul className="space-y-2">{item}</ul>
-          </section>
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="space-y-6">
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {youMightLikeMatchesItems.map((item, index) => (
+            <section
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
+            >
+              <ul className="space-y-2">{item}</ul>
+            </section>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
