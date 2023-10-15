@@ -18,6 +18,7 @@ import OngoingMatches from "./containers/Dashboard/OngoingMatches/OngoingMatches
 
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import NavigationHandler from "./routes/NavigationHandler.tsx";
 
 const App: React.FC = () => {
   const { isAuthenticated, setUser } = useUser();
@@ -40,6 +41,7 @@ const App: React.FC = () => {
         <>
           {isAuthenticated && <Sidebar />}
           <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
+            <NavigationHandler />
             <Header />
             <main className="min-h-[80vh]">
               <Routes>
