@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 const Header: React.FC = () => {
-  const { isAuthenticated, setUser } = useUser();
+  const { isAuthenticated, setUser, user } = useUser();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -29,12 +29,18 @@ const Header: React.FC = () => {
         </Link>
         <div className="space-x-4">
           {isAuthenticated ? (
-            <button
-              onClick={handleLogout}
-              className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-150"
-            >
-              Logout
-            </button>
+            <div className="flex items-center gap-x-8">
+              <div>
+                {user?.first_name} {user?.last_name}
+              </div>
+
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-150"
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <div className="flex space-x-4">
               <Link to="/login">

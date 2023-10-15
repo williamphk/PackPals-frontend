@@ -22,8 +22,8 @@ const Login: React.FC = () => {
     const result = await login(formData);
     const user = {
       email: result.email,
-      firstName: result.first_name,
-      lastName: result.last_name,
+      first_name: result.first_name,
+      last_name: result.last_name,
       id: result.id,
     };
     setUser(user);

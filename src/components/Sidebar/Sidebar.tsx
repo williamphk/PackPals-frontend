@@ -6,7 +6,7 @@ const Sidebar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="bg-white text-gray-700 w-64 h-full fixed top-0 left-0 shadow-lg hidden md:block dark:bg-gray-800 dark:text-white">
+    <div className="bg-white text-gray-700 w-64 h-full fixed top-0 left-0 shadow-lg hidden dark:bg-gray-800 dark:text-white md:flex flex-col justify-between">
       <ul className="mt-2">
         <li className="mb-1">
           <Link
