@@ -74,11 +74,6 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
         <SkeletonMatch />
         <SkeletonMatch />
         <SkeletonMatch />
-        <SkeletonMatch />
-        <SkeletonMatch />
-        <SkeletonMatch />
-        <SkeletonMatch />
-        <SkeletonMatch />
       </div>
     );
   }

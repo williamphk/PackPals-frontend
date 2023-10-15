@@ -5,8 +5,12 @@ import { useUser } from "./../../../context/UserContext";
 import { getRecentMatches } from "../../../services/user";
 import { Match } from "../../../models/Match";
 
+import SkeletonMatch from "../SkeletonMatch";
+
 const RecentMatches: React.FC = () => {
   const [recentMatches, setRecentMatches] = useState([] as Match[]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const { user } = useUser();
 
   useEffect(() => {
@@ -14,6 +18,7 @@ const RecentMatches: React.FC = () => {
       const recentMatches = await getRecentMatches();
       setRecentMatches(recentMatches);
       console.log(recentMatches);
+      setIsLoading(false);
     };
     getMatches();
   }, []);
@@ -63,16 +68,26 @@ const RecentMatches: React.FC = () => {
   return (
     <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-200">
       <h2 className="text-xl font-semibold mb-4">Recent Matches</h2>
-      <div className="space-y-6">
-        {recentMatchesItems.map((item, index) => (
-          <section
-            key={index}
-            className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
-          >
-            <ul className="space-y-2">{item}</ul>
-          </section>
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="space-y-6">
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {recentMatchesItems.map((item, index) => (
+            <section
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
+            >
+              <ul className="space-y-2">{item}</ul>
+            </section>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
