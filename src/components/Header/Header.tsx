@@ -18,11 +18,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white shadow-md mb-6">
+    <header className="bg-white text-gray-800 shadow-md mb-6 dark:bg-gray-900 dark:text-white">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link
           to="/"
-          className="text-xl font-bold text-gray-800 hover:text-gray-600 flex items-center gap-2"
+          className="text-xl font-bold hover:text-gray-600 flex items-center gap-2"
         >
           <img src={logo} height={50} width={50} alt="PackPals Logo" />
           PackPals
