@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import { useUser } from "./../../../context/UserContext";
 import { getRecentMatches } from "../../../services/user";
 import { Match } from "../../../models/Match";
 
 const RecentMatches: React.FC = () => {
   const [recentMatches, setRecentMatches] = useState([] as Match[]);
+  const { user } = useUser();
 
   useEffect(() => {
     const getMatches = async () => {
@@ -19,14 +22,32 @@ const RecentMatches: React.FC = () => {
     if (matches.length === 0) {
       return [<li className="text-gray-500">No matches found</li>];
     }
+    let email: string | undefined;
+    for (let i = 0; i < matches.length; i++) {
+      const match = matches[i];
+      if (match.requesterId === user?.id && match.requesterDetails) {
+        match.requesterDetails.first_name = "You";
+        match.requesterDetails.last_name = "";
+        email = match.requesteeDetails?.email;
+      } else if (match.requesteeId === user?.id && match.requesteeDetails) {
+        match.requesteeDetails.first_name = "You";
+        match.requesteeDetails.last_name = "";
+        email = match.requesterDetails?.email;
+      }
+    }
+
     return matches.map((match) => (
       <li key={match._id}>
         <p className="text-2xl font-bold">{match.product_name}</p>
         <p className="text-gray-700">
+          Requester: {match.requesterDetails?.first_name}{" "}
+          {match.requesterDetails?.last_name}
+        </p>
+        <p className="text-gray-700">
           Reqestee: {match.requesteeDetails?.first_name}{" "}
           {match.requesteeDetails?.last_name}
         </p>
-        <Link to={`mailto:${match.requesteeDetails?.email}`}>
+        <Link to={`mailto:${email}`}>
           <button className="bg-blue-500 text-white p-2 my-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 transition duration-150">
             Connect with email
           </button>
