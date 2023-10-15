@@ -33,7 +33,7 @@ const YouMightLikeMatches: React.FC = () => {
     return matches.map((match) => (
       <li key={match._id}>
         <p className="text-2xl font-bold">{match.product_name}</p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           Reqester: {match.requesterDetails?.first_name}{" "}
           {match.requesterDetails?.last_name}
         </p>
