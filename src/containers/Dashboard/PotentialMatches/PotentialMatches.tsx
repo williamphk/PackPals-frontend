@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { createMatch, acceptMatch } from "../../../services/match";
-import { getRecentMatchesByReqesterId } from "../../../services/user";
-import { Match } from "../../../models/Match";
-import MatchHosted from "../MatchHosted/MatchHosted";
-import UserProfile from "../../UserProfile/UserProfile";
 import { useNavigate } from "react-router-dom";
 
+import { createMatch, acceptMatch } from "../../../services/match";
+import { getRecentMatchesByReqesterId } from "../../../services/user";
+
+import { Match } from "../../../models/Match";
+
+import UserProfile from "../../UserProfile/UserProfile";
+import MatchHosted from "../MatchHosted/MatchHosted";
 import MatchAccepted from "../MatchAccepted/MatchAccepted";
 
 interface PotentialMatchesProps {
