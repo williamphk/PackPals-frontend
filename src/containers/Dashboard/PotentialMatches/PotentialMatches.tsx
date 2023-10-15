@@ -71,7 +71,7 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
   }
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">
+    <div className="bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-200">
       <h2 className="text-2xl font-semibold mb-4">Potential Matches</h2>
       {potentialMatches.map((match) => (
         <div

@@ -36,7 +36,7 @@ const NoPotentialMatches: React.FC<PotentialMatchesProps> = ({
   }
 
   return (
-    <div className="bg-gray-100 flex flex-col items-center justify-center dark:bg-gray-900 dark:text-white">
+    <div className="bg-gray-100 flex flex-col items-center justify-center dark:bg-gray-900 dark:text-white transition-colors duration-200">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96 dark:bg-gray-700">
         <h2 className="text-2xl font-semibold mb-4">No Potential Matches</h2>
         <p className="text-gray-600 mb-6 dark:text-gray-300">{message}</p>

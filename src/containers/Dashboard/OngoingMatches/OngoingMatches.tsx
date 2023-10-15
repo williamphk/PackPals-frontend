@@ -53,7 +53,7 @@ const OngoingMatches: React.FC = () => {
   const ongoingMatchesItems = generateItems(ongoingMatches);
 
   return (
-    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen">
+    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-200">
       <h2 className="text-xl font-semibold mb-4">Ongoing Matches</h2>
       <div className="space-y-6">
         {ongoingMatchesItems.map((item, index) => (

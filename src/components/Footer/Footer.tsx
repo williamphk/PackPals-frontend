@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-300 py-6 mt-0.5 dark:bg-gray-950 dark:text-white">
+    <footer className="bg-gray-300 py-6 mt-0.5 dark:bg-gray-950 dark:text-white transition-colors duration-200">
       <div className="container mx-auto text-center">
         <p className="mb-4 font-bold text-xl">PackPals</p>
         <ul className="flex justify-center space-x-6">

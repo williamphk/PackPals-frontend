@@ -77,7 +77,7 @@ const Dashboard: React.FC = () => {
   const youMightLikeItems = generateItems(youMightLike);
 
   return (
-    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen">
+    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-200">
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Find Matches</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
