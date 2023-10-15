@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getOngoingMatches } from "../../../services/user";
 import { Match } from "../../../models/Match";
+import { deleteMatch } from "../../../services/match";
+import MatchDeleted from "../MatchDeleted/MatchDeleted";
 
 const OngoingMatches: React.FC = () => {
   const [ongoingMatches, setOngoingMatches] = useState([] as Match[]);
+  const [isMatchDeleted, setIsMatchDeleted] = useState(false);
+  const [matchDeletedMessage, setMatchDeletedMessage] = useState("");
 
   useEffect(() => {
     const getMatches = async () => {
@@ -18,11 +22,31 @@ const OngoingMatches: React.FC = () => {
       return [<li className="text-gray-500">No matches found</li>];
     }
     return matches.map((match) => (
-      <li key={match._id}>
+      <li key={match._id} className="flex justify-between">
         <p className="text-2xl font-bold">{match.product_name}</p>
+        <button
+          className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-150"
+          onClick={(event) => handleDelete(match._id, event)}
+        >
+          Delete
+        </button>
       </li>
     ));
   };
+
+  const handleDelete = async (
+    matchId: string,
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.preventDefault();
+    const result = await deleteMatch(matchId);
+    setMatchDeletedMessage(result.message);
+    setIsMatchDeleted(true);
+  };
+
+  if (isMatchDeleted) {
+    return <MatchDeleted message={matchDeletedMessage} />;
+  }
 
   const ongoingMatchesItems = generateItems(ongoingMatches);
 
@@ -32,7 +56,7 @@ const OngoingMatches: React.FC = () => {
       <div className="space-y-6">
         {ongoingMatchesItems.map((item, index) => (
           <section key={index} className="bg-white p-6 rounded-xl shadow-md">
-            <ul className="space-y-2 mb-4">{item}</ul>
+            <ul className="space-y-2">{item}</ul>
           </section>
         ))}
       </div>

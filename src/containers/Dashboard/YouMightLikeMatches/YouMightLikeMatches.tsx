@@ -91,7 +91,7 @@ const YouMightLikeMatches: React.FC = () => {
             key="YouMightLike Matches"
             className="bg-white p-6 rounded-xl shadow-md"
           >
-            <ul className="space-y-2 mb-4">{item}</ul>
+            <ul className="space-y-2">{item}</ul>
           </section>
         ))}
       </div>

@@ -30,3 +30,8 @@ export const acceptMatch = async (matchId: string): Promise<response> => {
   const response = await api.post(`matches/${matchId}/accept`);
   return response.data;
 };
+
+export const deleteMatch = async (matchId: string): Promise<response> => {
+  const response = await api.delete(`matches/${matchId}`);
+  return response.data;
+};
