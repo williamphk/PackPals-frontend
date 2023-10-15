@@ -13,6 +13,7 @@ import Login from "./containers/Login/Login.tsx";
 import Dashboard from "./containers/Dashboard/Dashboard.tsx";
 import RecentMatches from "./containers/Dashboard/RecentMatches/RecentMatches.tsx";
 import YouMightLikeMatches from "./containers/Dashboard/YouMightLikeMatches/YouMightLikeMatches.tsx";
+import OngoingMatches from "./containers/Dashboard/OngoingMatches/OngoingMatches.tsx";
 
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -85,6 +86,15 @@ const App: React.FC = () => {
               element={
                 <PrivateRoute isAuthenticated={isAuthenticated}>
                   <YouMightLikeMatches />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/ongoing-matches"
+              element={
+                <PrivateRoute isAuthenticated={isAuthenticated}>
+                  <OngoingMatches />
                 </PrivateRoute>
               }
             />
