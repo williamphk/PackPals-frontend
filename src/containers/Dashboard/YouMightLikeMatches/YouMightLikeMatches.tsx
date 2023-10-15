@@ -18,7 +18,13 @@ const YouMightLikeMatches: React.FC = () => {
       return [<li className="text-gray-500">No matches found</li>];
     }
     return matches.map((match) => (
-      <li key={match._id}>{match.product_name}</li>
+      <li key={match._id}>
+        <p className="text-2xl font-bold">{match.product_name}</p>
+        <p className="text-gray-700">
+          Reqester: {match.requesterDetails?.first_name}{" "}
+          {match.requesterDetails?.last_name}
+        </p>
+      </li>
     ));
   };
 

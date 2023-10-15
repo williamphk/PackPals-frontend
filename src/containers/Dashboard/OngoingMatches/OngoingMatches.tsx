@@ -18,7 +18,9 @@ const OngoingMatches: React.FC = () => {
       return [<li className="text-gray-500">No matches found</li>];
     }
     return matches.map((match) => (
-      <li key={match._id}>{match.product_name}</li>
+      <li key={match._id}>
+        <p className="text-2xl font-bold">{match.product_name}</p>
+      </li>
     ));
   };
 
@@ -28,11 +30,8 @@ const OngoingMatches: React.FC = () => {
     <div className="p-6">
       <h2 className="text-xl font-semibold mb-4">Ongoing Matches</h2>
       <div className="space-y-6">
-        {ongoingMatchesItems.map((item) => (
-          <section
-            key="Ongoing Matches"
-            className="bg-white p-6 rounded-xl shadow-md"
-          >
+        {ongoingMatchesItems.map((item, index) => (
+          <section key={index} className="bg-white p-6 rounded-xl shadow-md">
             <ul className="space-y-2 mb-4">{item}</ul>
           </section>
         ))}
