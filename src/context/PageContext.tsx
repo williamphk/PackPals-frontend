@@ -27,6 +27,7 @@ interface PageProviderProps {
 
 export const PageProvider: React.FC<PageProviderProps> = ({ children }) => {
   const [page, setPage] = useState<Page>("dashboard");
+  window.scrollTo(0, 0);
 
   return (
     <PageContext.Provider value={{ page, setPage }}>
