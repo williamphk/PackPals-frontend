@@ -45,10 +45,13 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const getMatches = async () => {
       const ongoingMatches = await getOngoingMatches();
+      ongoingMatches.splice(5);
       setOngoingMatches(ongoingMatches);
       const recentMatches = await getRecentMatches();
+      recentMatches.splice(5);
       setRecentMatches(recentMatches);
       const youMightLike = await getYouMightLike();
+      youMightLike.splice(5);
       setYouMightLike(youMightLike);
     };
     getMatches();

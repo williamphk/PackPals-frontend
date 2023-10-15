@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useUser } from "./context/UserContext";
 
 import Header from "./components/Header/Header.tsx";
+import Footer from "./components/Footer/Footer.tsx";
+import Sidebar from "./components/Sidebar/Sidebar.tsx";
+
 import Homepage from "./containers/Homepage/Homepage.tsx";
 import Register from "./containers/Register/Register.tsx";
 import Login from "./containers/Login/Login.tsx";
 import Dashboard from "./containers/Dashboard/Dashboard.tsx";
-import Footer from "./components/Footer/Footer.tsx";
-import Sidebar from "./components/Sidebar/Sidebar.tsx";
+import RecentMatches from "./containers/Dashboard/RecentMatches/RecentMatches.tsx";
 
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -56,6 +58,15 @@ const App: React.FC = () => {
                 <PublicRoute isAuthenticated={isAuthenticated}>
                   <Register />
                 </PublicRoute>
+              }
+            />
+
+            <Route
+              path="/recent-matches"
+              element={
+                <PrivateRoute isAuthenticated={isAuthenticated}>
+                  <RecentMatches />
+                </PrivateRoute>
               }
             />
 
