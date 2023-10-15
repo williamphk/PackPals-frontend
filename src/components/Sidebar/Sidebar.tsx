@@ -10,7 +10,7 @@ const Sidebar: React.FC = () => {
       <ul className="mt-2">
         <li className="mb-1">
           <Link
-            to="/"
+            to="/dashboard"
             className="flex items-center px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <span className="ml-4">Home</span>
