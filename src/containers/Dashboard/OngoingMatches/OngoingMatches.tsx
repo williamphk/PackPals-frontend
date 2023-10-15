@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
+
 import { getOngoingMatches } from "../../../services/user";
 import { Match } from "../../../models/Match";
 import { deleteMatch } from "../../../services/match";
+
 import MatchDeleted from "../MatchDeleted/MatchDeleted";
+import SkeletonMatch from "../SkeletonMatch";
 
 const OngoingMatches: React.FC = () => {
   const [ongoingMatches, setOngoingMatches] = useState([] as Match[]);
   const [isMatchDeleted, setIsMatchDeleted] = useState(false);
   const [matchDeletedMessage, setMatchDeletedMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getMatches = async () => {
       const ongoingMatches = await getOngoingMatches();
       setOngoingMatches(ongoingMatches);
+      setIsLoading(false);
     };
     getMatches();
   }, []);
@@ -55,16 +60,27 @@ const OngoingMatches: React.FC = () => {
   return (
     <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-200">
       <h2 className="text-xl font-semibold mb-4">Ongoing Matches</h2>
-      <div className="space-y-6">
-        {ongoingMatchesItems.map((item, index) => (
-          <section
-            key={index}
-            className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
-          >
-            <ul className="space-y-2">{item}</ul>
-          </section>
-        ))}
-      </div>
+      {isLoading ? (
+        <>
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+          <SkeletonMatch />
+        </>
+      ) : (
+        <div className="space-y-6">
+          {ongoingMatchesItems.map((item, index) => (
+            <section
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
+            >
+              <ul className="space-y-2">{item}</ul>
+            </section>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
