@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
-type Page =
+export type Page =
   | "dashboard"
   | "recent-matches"
   | "ongoing-matches"

@@ -7,6 +7,7 @@ import {
   getRecentMatches,
   getYouMightLikeMatches,
 } from "../../services/user";
+import { Page, usePage } from "../../context/PageContext";
 
 import { Match } from "../../models/Match";
 
@@ -29,6 +30,7 @@ const Dashboard: React.FC = () => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSearchLoading, setIsSearchLoading] = useState(true);
+  const { setPage } = usePage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -80,6 +82,30 @@ const Dashboard: React.FC = () => {
   const recentMatchesItems = generateItems(recentMatches);
   const ongoingMatchesItems = generateItems(ongoingMatches);
   const youMightLikeItems = generateItems(youMightLike);
+
+  type Section = {
+    title: string;
+    items: any;
+    link: Page;
+  };
+
+  const sections: Section[] = [
+    {
+      title: "Recent Matches",
+      items: recentMatchesItems,
+      link: "recent-matches",
+    },
+    {
+      title: "Ongoing Matches",
+      items: ongoingMatchesItems,
+      link: "ongoing-matches",
+    },
+    {
+      title: "You Might Like",
+      items: youMightLikeItems,
+      link: "you-might-like",
+    },
+  ];
 
   return (
     <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-200">
@@ -141,23 +167,7 @@ const Dashboard: React.FC = () => {
 
       {isDashboardVisible && !isLoading && (
         <div className="space-y-6">
-          {[
-            {
-              title: "Recent Matches",
-              items: recentMatchesItems,
-              link: "/recent-matches",
-            },
-            {
-              title: "Ongoing Matches",
-              items: ongoingMatchesItems,
-              link: "/ongoing-matches",
-            },
-            {
-              title: "You Might Like",
-              items: youMightLikeItems,
-              link: "/you-might-like",
-            },
-          ].map((section) => (
+          {sections.map((section) => (
             <section
               key={section.title}
               className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
@@ -165,8 +175,9 @@ const Dashboard: React.FC = () => {
               <h3 className="text-xl font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2 mb-4">{section.items}</ul>
               <Link
-                to={section.link}
+                to={`/${section.link}`}
                 className="text-blue-500 focus:outline-none focus:text-blue-600"
+                onClick={() => setPage(section.link)}
               >
                 See more
               </Link>
