@@ -14,7 +14,9 @@ const YouMightLikeMatches: React.FC = () => {
   const [isMatchAccepted, setIsMatchAccepted] = useState(false);
   const [matchAcceptedMessage, setMatchAcceptedMessage] = useState("");
   const [recentMatches, setRecentMatches] = useState([] as Match[]);
-  const [viewedProfileId, setViewedProfileId] = useState<string | null>(null);
+  const [viewedProfileIndex, setViewedProfileIndex] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     const getMatches = async () => {
@@ -30,7 +32,7 @@ const YouMightLikeMatches: React.FC = () => {
         <li className="text-gray-500 dark:text-gray-300">No matches found</li>,
       ];
     }
-    return matches.map((match) => (
+    return matches.map((match, index) => (
       <li key={match._id}>
         <p className="text-2xl font-bold">{match.product_name}</p>
         <p className="text-gray-700 dark:text-white">
@@ -40,7 +42,7 @@ const YouMightLikeMatches: React.FC = () => {
         <div className="flex space-x-2">
           <button
             className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150"
-            onClick={(event) => handleProfile(match.requesterId, event)}
+            onClick={(event) => handleProfile(index, match.requesterId, event)}
           >
             View Profile
           </button>
@@ -51,7 +53,7 @@ const YouMightLikeMatches: React.FC = () => {
             Connect
           </button>
         </div>
-        {viewedProfileId === match.requesterId && (
+        {viewedProfileIndex === index && (
           <UserProfile recentMatches={recentMatches} />
         )}
       </li>
@@ -71,11 +73,12 @@ const YouMightLikeMatches: React.FC = () => {
   };
 
   const handleProfile = async (
+    index: number,
     requesterId: string,
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
-    setViewedProfileId(requesterId);
+    setViewedProfileIndex(index);
     const result = await getRecentMatchesByReqesterId(requesterId);
     setRecentMatches(result);
   };

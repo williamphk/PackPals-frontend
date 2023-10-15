@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const About: React.FC = () => {
   return (
-    <div className="p-6 bg-white dark:bg-gray-900 dark:text-white transition-colors duration-200 rounded-md shadow-md min-h-screen">
+    <div className="p-6 bg-white dark:bg-gray-900 dark:text-white transition-colors duration-200 shadow-md min-h-screen">
       <h1 className="text-3xl font-bold mb-6">About PackPals</h1>
 
       <section className="mb-6">
@@ -42,7 +42,10 @@ const About: React.FC = () => {
         <p className="text-lg">
           PackPals was developed my me, William Poon. Check out my portfolio and
           other fun applications:{" "}
-          <Link to="https://www.williamphk.com" className="text-blue-500">
+          <Link
+            to="https://www.williamphk.com"
+            className="text-blue-600 dark:text-blue-300"
+          >
             Here
           </Link>
           . Feel free to connect with me on LinkedIn!
