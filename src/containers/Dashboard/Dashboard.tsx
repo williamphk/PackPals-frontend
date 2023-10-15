@@ -26,6 +26,7 @@ const Dashboard: React.FC = () => {
   const [isPotentialMatchesVisible, setIsPotentialMatchesVisible] =
     useState(false);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -44,6 +45,7 @@ const Dashboard: React.FC = () => {
     if (!Array.isArray(result)) {
       setMessage(result);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -147,6 +149,7 @@ const Dashboard: React.FC = () => {
         <PotentialMatches
           formData={formData}
           potentialMatches={potentialMatches}
+          isLoading={isLoading}
         />
       )}
       {isPotentialMatchesVisible && !Array.isArray(potentialMatches) && (

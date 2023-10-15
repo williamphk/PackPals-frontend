@@ -9,17 +9,20 @@ import { Match } from "../../../models/Match";
 import UserProfile from "../../UserProfile/UserProfile";
 import MatchHosted from "../MatchHosted/MatchHosted";
 import MatchAccepted from "../MatchAccepted/MatchAccepted";
+import SkeletonMatch from "../SkeletonMatch";
 
 interface PotentialMatchesProps {
   formData: {
     product_name: string;
   };
   potentialMatches: Match[];
+  isLoading: boolean;
 }
 
 const PotentialMatches: React.FC<PotentialMatchesProps> = ({
   formData,
   potentialMatches,
+  isLoading,
 }) => {
   const navigate = useNavigate();
 
@@ -61,6 +64,24 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
     e.preventDefault();
     navigate("/");
   };
+
+  if (isLoading) {
+    return (
+      <div className="bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-200">
+        <h2 className="text-2xl font-semibold mb-4">Potential Matches</h2>
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+        <SkeletonMatch />
+      </div>
+    );
+  }
 
   if (isMatchAccepted) {
     return <MatchAccepted message={matchAcceptedMessage} />;
