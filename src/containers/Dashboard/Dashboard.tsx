@@ -12,6 +12,7 @@ import { Match } from "../../models/Match";
 
 import PotentialMatches from "./PotentialMatches/PotentialMatches";
 import NoPotentialMatches from "./NoPotentialMatches/NoPotentialMatches";
+import SkeletonMatch from "./SkeletonMatch";
 
 const Dashboard: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ const Dashboard: React.FC = () => {
     useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isSearchLoading, setIsSearchLoading] = useState(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -45,7 +47,7 @@ const Dashboard: React.FC = () => {
     if (!Array.isArray(result)) {
       setMessage(result);
     }
-    setIsLoading(false);
+    setIsSearchLoading(false);
   };
 
   useEffect(() => {
@@ -59,6 +61,7 @@ const Dashboard: React.FC = () => {
       const youMightLike = await getYouMightLikeMatches();
       youMightLike.splice(5);
       setYouMightLike(youMightLike);
+      setIsLoading(false);
     };
     getMatches();
   }, []);
@@ -109,7 +112,34 @@ const Dashboard: React.FC = () => {
         </form>
       </section>
 
-      {isDashboardVisible && (
+      {isLoading && (
+        <div className="space-y-6">
+          {[
+            {
+              title: "Recent Matches",
+              items: [<SkeletonMatch />],
+            },
+            {
+              title: "Ongoing Matches",
+              items: [<SkeletonMatch />],
+            },
+            {
+              title: "You Might Like",
+              items: [<SkeletonMatch />],
+            },
+          ].map((section) => (
+            <section
+              key={section.title}
+              className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700 dark:text-white"
+            >
+              <h3 className="text-xl font-semibold mb-4">{section.title}</h3>
+              {section.items}
+            </section>
+          ))}
+        </div>
+      )}
+
+      {isDashboardVisible && !isLoading && (
         <div className="space-y-6">
           {[
             {
@@ -149,7 +179,7 @@ const Dashboard: React.FC = () => {
         <PotentialMatches
           formData={formData}
           potentialMatches={potentialMatches}
-          isLoading={isLoading}
+          isLoading={isSearchLoading}
         />
       )}
       {isPotentialMatchesVisible && !Array.isArray(potentialMatches) && (
