@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import { useTheme } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 
 const Header: React.FC = () => {
   const { isAuthenticated, setUser, user } = useUser();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,6 +16,9 @@ const Header: React.FC = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     setUser(null);
+    if (theme === "dark") {
+      toggleTheme();
+    }
     navigate("/login");
   };
 
