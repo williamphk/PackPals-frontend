@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { useUser } from "./context/UserContext";
-import { useSocket } from "./context/SocketContext";
 
 import Header from "./components/Header/Header.tsx";
 import Footer from "./components/Footer/Footer.tsx";
@@ -20,10 +19,10 @@ import OngoingMatches from "./containers/Dashboard/OngoingMatches/OngoingMatches
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import NavigationHandler from "./routes/NavigationHandler.tsx";
+import NotificationHandler from "./routes/NotificationHandler.tsx";
 
 const App: React.FC = () => {
-  const { isAuthenticated, setUser, user } = useUser();
-  const socket = useSocket();
+  const { isAuthenticated, setUser } = useUser();
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
@@ -33,11 +32,7 @@ const App: React.FC = () => {
       setUser(parsedUser);
     }
     setAuthLoading(false);
-    if (socket) {
-      socket.emit("joinRoom", { userId: user?.id });
-      console.log("Joined room" + user?.id);
-    }
-  }, [setUser, user?.id]);
+  }, [setUser]);
 
   return (
     <Router>
@@ -48,6 +43,7 @@ const App: React.FC = () => {
           {isAuthenticated && <Sidebar />}
           <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
             {isAuthenticated && <NavigationHandler />}
+            {isAuthenticated && <NotificationHandler />}
             <Header />
             <main className="sm:min-h-[80vh]">
               <Routes>

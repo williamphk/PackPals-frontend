@@ -54,7 +54,9 @@ const YouMightLikeMatches: React.FC = () => {
           </button>
           <button
             className="py-1 px-3 bg-green-500 text-white rounded hover:bg-green-600 transition duration-150"
-            onClick={(event) => handleConnect(match._id, event)}
+            onClick={(event) =>
+              handleConnect(match._id, match.requesterId, event)
+            }
           >
             Connect
           </button>
@@ -70,6 +72,7 @@ const YouMightLikeMatches: React.FC = () => {
 
   const handleConnect = async (
     matchId: string,
+    requesterId: string,
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
@@ -77,8 +80,7 @@ const YouMightLikeMatches: React.FC = () => {
     if (socket) {
       console.log("emitting requestAccepted");
       socket.emit("requestAccepted", {
-        requestId: "REQUEST_ID",
-        requesterId: "REQUESTER_ID",
+        requesterId: requesterId,
       });
     }
     setMatchAcceptedMessage(result.message);
