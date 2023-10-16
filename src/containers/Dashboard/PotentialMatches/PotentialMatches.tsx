@@ -49,6 +49,7 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
     e.preventDefault();
     const result = await acceptMatch(matchId);
     if (socket) {
+      console.log("emitting requestAccepted");
       socket.emit("requestAccepted", {
         requestId: "REQUEST_ID",
         requesterId: "REQUESTER_ID",

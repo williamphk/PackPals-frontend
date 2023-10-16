@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import { useSocket } from "../../../context/SocketContext";
 import { getYouMightLikeMatches } from "../../../services/user";
 import { getRecentMatchesByReqesterId } from "../../../services/user";
 import { acceptMatch } from "../../../services/match";
@@ -19,6 +20,8 @@ const YouMightLikeMatches: React.FC = () => {
     null
   );
   const [isLoading, setIsLoading] = useState(true);
+
+  const socket = useSocket();
 
   useEffect(() => {
     const getMatches = async () => {
@@ -71,6 +74,13 @@ const YouMightLikeMatches: React.FC = () => {
   ) => {
     e.preventDefault();
     const result = await acceptMatch(matchId);
+    if (socket) {
+      console.log("emitting requestAccepted");
+      socket.emit("requestAccepted", {
+        requestId: "REQUEST_ID",
+        requesterId: "REQUESTER_ID",
+      });
+    }
     setMatchAcceptedMessage(result.message);
     setIsMatchAccepted(true);
   };

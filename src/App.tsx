@@ -36,11 +36,8 @@ const App: React.FC = () => {
     if (socket) {
       socket.emit("joinRoom", { userId: user?.id });
       console.log("Joined room" + user?.id);
-      return () => {
-        socket.disconnect();
-      };
     }
-  }, [setUser, socket, user?.id]);
+  }, [setUser, user?.id]);
 
   return (
     <Router>
@@ -51,7 +48,6 @@ const App: React.FC = () => {
           {isAuthenticated && <Sidebar />}
           <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
             {isAuthenticated && <NavigationHandler />}
-
             <Header />
             <main className="sm:min-h-[80vh]">
               <Routes>
