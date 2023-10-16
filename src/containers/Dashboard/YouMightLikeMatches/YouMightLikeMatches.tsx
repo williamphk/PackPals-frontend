@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { useSocket } from "../../../context/SocketContext";
 import { getYouMightLikeMatches } from "../../../services/user";
 import { getRecentMatchesByReqesterId } from "../../../services/user";
 import { acceptMatch } from "../../../services/match";
@@ -20,8 +19,6 @@ const YouMightLikeMatches: React.FC = () => {
     null
   );
   const [isLoading, setIsLoading] = useState(true);
-
-  const socket = useSocket();
 
   useEffect(() => {
     const getMatches = async () => {
@@ -54,9 +51,7 @@ const YouMightLikeMatches: React.FC = () => {
           </button>
           <button
             className="py-1 px-3 bg-green-500 text-white rounded hover:bg-green-600 transition duration-150"
-            onClick={(event) =>
-              handleConnect(match._id, match.requesterId, event)
-            }
+            onClick={(event) => handleConnect(match._id, event)}
           >
             Connect
           </button>
@@ -72,17 +67,10 @@ const YouMightLikeMatches: React.FC = () => {
 
   const handleConnect = async (
     matchId: string,
-    requesterId: string,
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
     const result = await acceptMatch(matchId);
-    if (socket) {
-      console.log("emitting requestAccepted");
-      socket.emit("requestAccepted", {
-        requesterId: requesterId,
-      });
-    }
     setMatchAcceptedMessage(result.message);
     setIsMatchAccepted(true);
   };
