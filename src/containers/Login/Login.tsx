@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { login } from "../../services/auth";
 import { useUser } from "../../context/UserContext";
 
@@ -30,15 +32,15 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4">
-      <h2 className="text-2xl font-bold mb-6">Login</h2>
+    <div className="flex flex-col items-center justify-center p-4 h-[70vh]">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow-md w-full max-w-md"
+        className="bg-white p-12 rounded-xl shadow-md w-full max-w-lg"
       >
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="email">
-            Email*
+        <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
+        <div className="mb-6">
+          <label className="block font-medium mb-2" htmlFor="email">
+            Email address*
           </label>
           <input
             type="email"
@@ -47,11 +49,12 @@ const Login: React.FC = () => {
             onChange={handleChange}
             required
             id="email"
-            className="p-2 w-full border rounded focus:border-blue-500 focus:outline-none"
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+            placeholder="peter@email.com"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="password">
+        <div className="mb-6">
+          <label className="block font-medium mb-2" htmlFor="password">
             Password*
           </label>
           <input
@@ -61,15 +64,21 @@ const Login: React.FC = () => {
             onChange={handleChange}
             required
             id="password"
-            className="p-2 w-full border rounded focus:border-blue-500 focus:outline-none"
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none height-12 border-2"
+            placeholder="********"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          className="w-full bg-blue-500 text-white mb-6 p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
           Login
         </button>
+        <div className="flex justify-center">
+          <Link to="/register" className="text-blue-500 hover:text-blue-700">
+            Don't have a account?
+          </Link>
+        </div>
       </form>
     </div>
   );
