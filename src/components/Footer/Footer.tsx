@@ -6,6 +6,7 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-300 py-6 mt-0.5 dark:bg-gray-950 dark:text-white transition-colors duration-200">
       <div className="container mx-auto text-center">
         <p className="mb-4 font-bold text-xl">PackPals</p>
+
         <ul className="flex justify-center space-x-6">
           <li>
             <Link to="/about" className="hover:text-gray-400">
@@ -28,6 +29,7 @@ const Footer: React.FC = () => {
             </a>
           </li>
         </ul>
+        <p>Copyright © 2023, William Poon</p>
       </div>
     </footer>
   );

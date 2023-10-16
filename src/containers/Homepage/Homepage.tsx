@@ -11,8 +11,11 @@ const Homepage: React.FC = () => {
       <section className="p-10 mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
         <div className="flex flex-col sm:flex-row gap-8">
           <div className="flex flex-col items-center sm:items-start sm:justify-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-8">
-              Welcome to PackPals
+            <h1 className="text-6xl font-bold text-gray-900 mb-8">
+              Welcome to{" "}
+              <div className="bg-gradient-to-r from-blue-500 via-red-500 to-purple-400 inline-block text-transparent bg-clip-text">
+                PackPals
+              </div>
             </h1>
             <p className="text-lg text-gray-600 mb-8">
               In an era of rising costs, PackPals is your community's answer to
