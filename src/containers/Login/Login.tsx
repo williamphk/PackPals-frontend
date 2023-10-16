@@ -32,10 +32,10 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 h-[80vh]">
+    <div className="flex flex-col items-center justify-center p-4 sm:h-[80vh]">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-12 rounded-xl shadow-md w-full max-w-lg"
+        className="bg-white p-6 sm:p-12 rounded-xl shadow-md w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
         <div className="mb-6">

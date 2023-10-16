@@ -43,7 +43,7 @@ const App: React.FC = () => {
           <div className={`${isAuthenticated ? "md:ml-60 sm:pl-4" : ""}`}>
             <NavigationHandler />
             <Header />
-            <main className="min-h-[80vh]">
+            <main className="sm:min-h-[80vh]">
               <Routes>
                 <Route
                   path="/"

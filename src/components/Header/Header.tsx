@@ -27,10 +27,10 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link
           to="/"
-          className="text-xl font-bold hover:text-gray-600 flex items-center gap-2"
+          className="text-xl font-bold hover:text-gray-600 items-center gap-2 flex"
         >
           <img src={logo} height={50} width={50} alt="PackPals Logo" />
-          PackPals
+          <h1 className="hidden sm:block">PackPals</h1>
         </Link>
         <div className="space-x-4">
           {isAuthenticated ? (
