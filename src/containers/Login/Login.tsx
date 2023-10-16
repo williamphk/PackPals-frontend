@@ -32,7 +32,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 h-[70vh]">
+    <div className="flex flex-col items-center justify-center p-4 h-[80vh]">
       <form
         onSubmit={handleSubmit}
         className="bg-white p-12 rounded-xl shadow-md w-full max-w-lg"
@@ -76,7 +76,7 @@ const Login: React.FC = () => {
         </button>
         <div className="flex justify-center">
           <Link to="/register" className="text-blue-500 hover:text-blue-700">
-            Don't have a account?
+            Don't have an account?
           </Link>
         </div>
       </form>

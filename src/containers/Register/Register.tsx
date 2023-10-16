@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { register } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -26,13 +27,13 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4">
-      <h2 className="text-2xl font-bold mb-6">Register</h2>
+    <div className="flex flex-col items-center justify-center h-full p-4 h-[80vh]">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow-md w-full max-w-md"
+        className="bg-white p-12 rounded-xl shadow-md w-full max-w-lg"
       >
-        <div className="mb-4">
+        <h2 className="text-3xl font-bold mb-6 text-center">Register</h2>
+        <div className="mb-6">
           <label className="block text-sm font-medium mb-2" htmlFor="email">
             Email*
           </label>
@@ -41,10 +42,11 @@ const Register: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="p-2 w-full border rounded focus:border-blue-500 focus:outline-none"
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+            placeholder="peter@email.com"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label className="block text-sm font-medium mb-2" htmlFor="password">
             Password*
           </label>
@@ -53,10 +55,11 @@ const Register: React.FC = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="p-2 w-full border rounded focus:border-blue-500 focus:outline-none"
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+            placeholder="********"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label
             className="block text-sm font-medium mb-2"
             htmlFor="first_name"
@@ -68,10 +71,11 @@ const Register: React.FC = () => {
             name="first_name"
             value={formData.first_name}
             onChange={handleChange}
-            className="p-2 w-full border rounded focus:border-blue-500 focus:outline-none"
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+            placeholder="Peter"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label className="block text-sm font-medium mb-2" htmlFor="last_name">
             Last Name*
           </label>
@@ -80,15 +84,21 @@ const Register: React.FC = () => {
             name="last_name"
             value={formData.last_name}
             onChange={handleChange}
-            className="p-2 w-full border rounded focus:border-blue-500 focus:outline-none"
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+            placeholder="Parker"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          className="w-full bg-blue-500 text-white mb-6 p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
           Register
         </button>
+        <div className="flex justify-center">
+          <Link to="/login" className="text-blue-500 hover:text-blue-700">
+            Already have an account?
+          </Link>
+        </div>
       </form>
     </div>
   );
