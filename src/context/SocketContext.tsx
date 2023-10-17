@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
+import { useUser } from "./UserContext";
 
-const ENDPOINT = "http://127.0.0.1:3001";
+const ENDPOINT = "https://packpals.onrender.com/";
 
 const SocketContext = createContext<any>(null);
 
@@ -15,14 +16,17 @@ interface SocketProviderProps {
 
 export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<any>(null);
+  const { user } = useUser();
 
   useEffect(() => {
-    const newSocket = socketIOClient(ENDPOINT);
-    setSocket(newSocket);
+    if (user) {
+      const newSocket = socketIOClient(ENDPOINT);
+      setSocket(newSocket);
 
-    return () => {
-      newSocket.close();
-    };
+      return () => {
+        newSocket.close();
+      };
+    }
   }, []);
 
   return (
