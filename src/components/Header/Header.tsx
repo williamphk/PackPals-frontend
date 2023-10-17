@@ -38,7 +38,7 @@ const Header: React.FC = () => {
               <div>
                 {user?.first_name} {user?.last_name}
               </div>
-
+              <button>Notification</button>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-150"
