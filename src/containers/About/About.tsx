@@ -63,9 +63,9 @@ const About: React.FC = () => {
         <p className="text-lg">Matching System</p>
         <p className="text-lg">User Dashboard</p>
         <p className="text-lg">Realtime Notification</p>
-        <h3 className="text-xl mb-3">Should Have Features</h3>
+        <h3 className="text-xl my-3">Should Have Features</h3>
         <p className="text-lg">Realtime Notification</p>
-        <h3 className="text-xl mb-3">Nice-to-have Features</h3>
+        <h3 className="text-xl my-3">Nice-to-have Features</h3>
         <p className="text-lg">Dark mode</p>
       </section>
 
