@@ -10,7 +10,7 @@ const About: React.FC = () => {
         <h2 className="text-2xl mb-3">The Story</h2>
         <p className="text-lg">
           PackPals was born out of a simple idea: connecting people looking for
-          similar products or deals. In today's fast-paced world, we realized
+          similar products or deals. In today's fast-paced world, I realized
           that collaboration and connection are more important than ever. By
           leveraging the power of community, PackPals aims to make finding deals
           and products a shared experience. It is also built as of my capstone
@@ -27,14 +27,31 @@ const About: React.FC = () => {
         </p>
         <p className="text-lg">
           PackPals is crafted using modern web technologies, ensuring a seamless
-          experience across all devices. We leverage React for a dynamic
+          experience across all devices. I leverage React for a dynamic
           frontend, with a backend powered by Node.js. TailwindCSS provides the
           sleek, user-friendly interface, and MongoDB stores user data securely.
           It is also the first time for me to use TypeScript in both frontend
           and backend. The type and interface is kind of confusing at the
           beginning, but it is really helpful to catch bugs and make the code
-          more readable.
+          more readable. It also includes the feastures that I am implementing
+          for the first time, such as Dark Mode, Refresh Token, Realtime
+          Notification with Socket.io, and more.
         </p>
+        You can find the source code on{" "}
+        <Link
+          to="https://github.com/williamphk/PackPals-frontend"
+          className="text-blue-600 dark:text-blue-300"
+        >
+          Frontend
+        </Link>{" "}
+        and{" "}
+        <Link
+          to="
+          https://github.com/williamphk/PackPals-backend"
+          className="text-blue-600 dark:text-blue-300"
+        >
+          Backend
+        </Link>
       </section>
 
       <section className="mb-6">
