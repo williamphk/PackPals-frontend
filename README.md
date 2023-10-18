@@ -6,16 +6,17 @@ Live Preview: https://packpals.williamphk.com
 
 ## Features
 - User Authentication: Implemented secure user registration and login functionality.
-- Post Creation: Users can create and share posts with text content.
-- Interactive System: Users can interact with posts through likes and comments.
-- Friend System: Users can send, accept or decline friend requests from other users.
+- Match Request: Users can request a match for a product they are interested.
+- Match Accept: Users can accept a match request they are interested and communicate with the requester through email.
 - Responsive Design: Responsive across multiple devices.
+- Dark Mode:
+- Realtime Notification:
 
 ## Technologies
 - **ReactJS**: A JavaScript library for building user interfaces.
-- **Redux**: Used for application state management.
 - **Axios**: Promise based HTTP client for the browser and Node.js.
-- **React-hook-form**: A flexible and efficient form library for React.
 - **TailwindCSS**: A utility-first CSS framework that can be used to build modern websites.
+- **Socket.io Client**: To receive realtime notifications
+- **TypeScript**: The programming langauge
 
 
