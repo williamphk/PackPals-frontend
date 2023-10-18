@@ -40,15 +40,14 @@ const About: React.FC = () => {
         <p className="text-lg">
           You can find the source code on{" "}
           <Link
-            to="https://github.com/williamphk/PackPals-frontend"
+            to="https://www.github.com/williamphk/PackPals-frontend"
             className="text-blue-600 dark:text-blue-300"
           >
             Frontend
           </Link>{" "}
           and{" "}
           <Link
-            to="
-          https://github.com/williamphk/PackPals-backend"
+            to="https://github.com/williamphk/PackPals-backend"
             className="text-blue-600 dark:text-blue-300"
           >
             Backend
