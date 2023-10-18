@@ -70,21 +70,6 @@ const About: React.FC = () => {
       </section>
 
       <section className="mb-6">
-        <h2 className="text-2xl mb-3">The Team</h2>
-        <p className="text-lg">
-          PackPals was developed my me, William Poon. Check out my portfolio and
-          other fun applications:{" "}
-          <Link
-            to="https://www.williamphk.com"
-            className="text-blue-600 dark:text-blue-300"
-          >
-            Here
-          </Link>
-          . Feel free to connect with me on LinkedIn!
-        </p>
-      </section>
-
-      <section className="mb-6">
         <h2 className="text-2xl mb-3">How to Use</h2>
         <p className="text-lg">Using PackPals is straightforward:</p>
         <ol className="list-decimal pl-5 mt-3">
@@ -98,6 +83,27 @@ const About: React.FC = () => {
           </li>
           <li>Enjoy the power of community-driven shopping!</li>
         </ol>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl mb-3">Next step</h2>
+        <p className="text-lg">Messaging System</p>
+        <p className="text-lg">User Profile Picture</p>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl mb-3">The Team</h2>
+        <p className="text-lg">
+          PackPals was developed my me, William Poon. Check out my portfolio and
+          other fun applications:{" "}
+          <Link
+            to="https://www.williamphk.com"
+            className="text-blue-600 dark:text-blue-300"
+          >
+            Here
+          </Link>
+          . Feel free to connect with me on LinkedIn!
+        </p>
       </section>
     </div>
   );
