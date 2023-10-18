@@ -9,7 +9,7 @@ Live Preview: https://packpals.williamphk.com
 - Match Request: Users can request a match for a product they are interested.
 - Match Accept: Users can accept a match request they are interested and communicate with the requester through email.
 - Responsive Design: Responsive across multiple devices.
-- Dark Mode: Users can change to dark mode or light mode according to their preference.
+- Dark Mode: Users can change to dark mode or light mode according to their preferences.
 - Realtime Notification: Users receive a notification after their matches are being accepted.
 
 ## Technologies
