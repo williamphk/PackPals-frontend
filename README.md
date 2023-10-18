@@ -1,27 +1,21 @@
-# React + TypeScript + Vite
+# PackPals - A Full Stack Grocery Matching Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="1710" alt="screenshot" src="https://github.com/williamphk/PackPals-frontend/assets/65807958/21d22bb7-939d-4ed0-978f-5a8dcc0dab4a">
 
-Currently, two official plugins are available:
+Live Preview: https://packpals.williamphk.com
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- User Authentication: Implemented secure user registration and login functionality.
+- Post Creation: Users can create and share posts with text content.
+- Interactive System: Users can interact with posts through likes and comments.
+- Friend System: Users can send, accept or decline friend requests from other users.
+- Responsive Design: Responsive across multiple devices.
 
-## Expanding the ESLint configuration
+## Technologies
+- **ReactJS**: A JavaScript library for building user interfaces.
+- **Redux**: Used for application state management.
+- **Axios**: Promise based HTTP client for the browser and Node.js.
+- **React-hook-form**: A flexible and efficient form library for React.
+- **TailwindCSS**: A utility-first CSS framework that can be used to build modern websites.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
