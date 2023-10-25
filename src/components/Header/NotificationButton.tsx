@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { getUnseenNotifications } from "../../services/notifications.ts";
+import { getNotifications } from "../../services/notifications.ts";
 import { Notification } from "../../models/Notification.ts";
 
 import MenuModal from "./MenuModal.tsx";
@@ -36,7 +36,7 @@ const NotificationButton: React.FC = () => {
 
   useEffect(() => {
     const unseenNotifications = async () => {
-      const notifications = await getUnseenNotifications();
+      const notifications = await getNotifications();
       setNotifications(notifications);
     };
     unseenNotifications();
