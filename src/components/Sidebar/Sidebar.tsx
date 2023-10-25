@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../context/ThemeContext";
 import { usePage } from "../../context/PageContext";
 
 const Sidebar: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
   const { page, setPage } = usePage();
 
   return (
@@ -59,12 +57,6 @@ const Sidebar: React.FC = () => {
           </Link>
         </li>
       </ul>
-      <button
-        onClick={toggleTheme}
-        className="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 mt-5 dark:bg-gray-400 dark:text-black"
-      >
-        {theme === "light" ? "Dark" : "Light"} Mode
-      </button>
     </div>
   );
 };

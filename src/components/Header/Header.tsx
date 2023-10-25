@@ -35,10 +35,20 @@ const Header: React.FC = () => {
         <div className="space-x-4">
           {isAuthenticated ? (
             <div className="flex items-center gap-x-8">
-              <div>
+              <div className="whitespace-nowrap">
                 {user?.first_name} {user?.last_name}
               </div>
               <button>Notification</button>
+              <button
+                onClick={toggleTheme}
+                className="w-full text-dark dark:text-white flex"
+              >
+                {theme === "light" ? (
+                  <span className="material-symbols-outlined">dark_mode</span>
+                ) : (
+                  <span className="material-symbols-outlined">light_mode</span>
+                )}
+              </button>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-150"
