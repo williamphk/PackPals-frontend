@@ -8,6 +8,7 @@ const Login: React.FC = () => {
   const { setUser } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -26,6 +27,36 @@ const Login: React.FC = () => {
     setIsLoading(true);
     try {
       const result = await login(formData);
+      const user = {
+        email: result.email,
+        first_name: result.first_name,
+        last_name: result.last_name,
+        id: result.id,
+      };
+      setUser(user);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+
+      const error = err as {
+        response?: {
+          data?: {
+            message?: string;
+          };
+        };
+      };
+
+      setError(error?.response?.data?.message || "Something went wrong");
+    }
+  };
+
+  const handleLoginWithTestAccount = async () => {
+    setIsLoading(true);
+    try {
+      const result = await login({
+        email: "test@test.com",
+        password: "Test",
+      });
       const user = {
         email: result.email,
         first_name: result.first_name,
@@ -78,12 +109,12 @@ const Login: React.FC = () => {
             placeholder="peter@email.com"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label className="block font-medium mb-2" htmlFor="password">
             Password*
           </label>
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
@@ -92,18 +123,40 @@ const Login: React.FC = () => {
             className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none height-12 border-2"
             placeholder="********"
           />
+          <div className="absolute right-4 top-11">
+            <button
+              type="button"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            >
+              <span className="material-symbols-outlined text-gray-500">
+                {passwordVisible ? "visibility" : "visibility_off"}
+              </span>
+            </button>
+          </div>
         </div>
+
         <button
           type="submit"
           className="w-full bg-blue-500 text-white mb-6 p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
           {isLoading ? "Loading..." : "Login"}
         </button>
+
         <div className="flex justify-center">
-          <Link to="/register" className="text-blue-500 hover:text-blue-700">
+          <Link
+            to="/register"
+            className="text-blue-500 hover:text-blue-700 mb-3"
+          >
             Don't have an account?
           </Link>
         </div>
+        <button
+          type="button"
+          onClick={handleLoginWithTestAccount}
+          className="text-gray-500 hover:text-gray-700 w-full text-decoration-line: underline"
+        >
+          Login with Test Account
+        </button>
       </form>
     </div>
   );
