@@ -4,6 +4,8 @@ import { useUser } from "../../context/UserContext";
 import { useTheme } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
+import NotificationButton from "./NotificationButton";
+
 import logo from "../../assets/logo.png";
 
 const Header: React.FC = () => {
@@ -38,7 +40,7 @@ const Header: React.FC = () => {
               <div className="whitespace-nowrap">
                 {user?.first_name} {user?.last_name}
               </div>
-              <button>Notification</button>
+              <NotificationButton />
               <button
                 onClick={toggleTheme}
                 className="w-full text-dark dark:text-white flex"

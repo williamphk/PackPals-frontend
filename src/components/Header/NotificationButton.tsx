@@ -1,43 +1,55 @@
-// import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { getUnseenNotifications } from "../../services/notifications.ts";
+import { Notification } from "../../models/Notification.ts";
 
-// // import MenuModal from "../common/MenuModal";
+import MenuModal from "./MenuModal.tsx";
 
-// const NotificationButton: React.FC = () => {
-//   const [isMenuOpen, setMenuOpen] = useState(false);
+const NotificationButton: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [notifications, setNotifications] = useState([] as Notification[]);
 
-//   // Reference the profile menu DOM element.
-//   const menuRef = useRef(null);
+  // Reference the profile menu DOM element.
+  const menuRef = useRef(null);
 
-//   const handleClickOutside = (event) => {
-//     // If the menu is mounted in the DOM and the clicked element is not one of the menu items
-//     if (menuRef.current && !menuRef.current.contains(event.target)) {
-//       setMenuOpen(false);
-//     }
-//   };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      // When the Navbar component is unmounted, the event listener is removed
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-//   useEffect(() => {
-//     document.addEventListener("click", handleClickOutside);
-//     return () => {
-//       // When the Navbar component is unmounted, the event listener is removed
-//       document.removeEventListener("click", handleClickOutside);
-//     };
-//   }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    // If the menu is mounted in the DOM and the clicked element is not one of the menu items
+    if (
+      menuRef.current &&
+      !(menuRef.current as any).contains(e.target as Node)
+    ) {
+      setIsMenuOpen(false);
+    }
+  };
 
-//   const toggleProfileMenu = () => {
-//     setMenuOpen(!isMenuOpen);
-//   };
+  const toggleProfileMenu = () => {
+    console.log("toggle");
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-//   const menuItems = [];
+  useEffect(() => {
+    const unseenNotifications = async () => {
+      const notifications = await getUnseenNotifications();
+      setNotifications(notifications);
+    };
+    unseenNotifications();
+  }, []);
 
-//   return (
-//     <div className="relative flex justify-end self-center">
-//       <button onClick={toggleProfileMenu} ref={menuRef}>
-//         Notification
-//       </button>
+  return (
+    <div className="relative flex justify-end self-center">
+      <button onClick={toggleProfileMenu} ref={menuRef}>
+        Notification
+      </button>
+      {isMenuOpen && <MenuModal notifications={notifications} />}
+    </div>
+  );
+};
 
-//       {isMenuOpen && <MenuModal menuItems={menuItems} />}
-//     </div>
-//   );
-// };
-
-// export default NotificationButton;
+export default NotificationButton;
