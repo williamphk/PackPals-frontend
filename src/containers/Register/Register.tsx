@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -23,6 +24,7 @@ const Register: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     register(formData).then(() => navigate("/login"));
   };
 
@@ -92,7 +94,7 @@ const Register: React.FC = () => {
           type="submit"
           className="w-full bg-blue-500 text-white mb-6 p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
-          Register
+          {isLoading ? "Loading..." : "Register"}
         </button>
         <div className="flex justify-center">
           <Link to="/login" className="text-blue-500 hover:text-blue-700">
