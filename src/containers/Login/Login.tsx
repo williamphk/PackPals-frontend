@@ -6,6 +6,8 @@ import { useUser } from "../../context/UserContext";
 
 const Login: React.FC = () => {
   const { setUser } = useUser();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -21,14 +23,30 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const result = await login(formData);
-    const user = {
-      email: result.email,
-      first_name: result.first_name,
-      last_name: result.last_name,
-      id: result.id,
-    };
-    setUser(user);
+    setIsLoading(true);
+    try {
+      const result = await login(formData);
+      const user = {
+        email: result.email,
+        first_name: result.first_name,
+        last_name: result.last_name,
+        id: result.id,
+      };
+      setUser(user);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+
+      const error = err as {
+        response?: {
+          data?: {
+            message?: string;
+          };
+        };
+      };
+
+      setError(error?.response?.data?.message || "Something went wrong");
+    }
   };
 
   return (
@@ -38,6 +56,13 @@ const Login: React.FC = () => {
         className="bg-white p-6 sm:p-12 rounded-xl shadow-md w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
+        {error ? (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-6">
+            <p>{error}</p>
+          </div>
+        ) : (
+          <div className="py-5 mb-6"></div>
+        )}
         <div className="mb-6">
           <label className="block font-medium mb-2" htmlFor="email">
             Email address*
@@ -72,7 +97,7 @@ const Login: React.FC = () => {
           type="submit"
           className="w-full bg-blue-500 text-white mb-6 p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
-          Login
+          {isLoading ? "Loading..." : "Login"}
         </button>
         <div className="flex justify-center">
           <Link to="/register" className="text-blue-500 hover:text-blue-700">
