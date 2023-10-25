@@ -44,8 +44,8 @@ const NotificationButton: React.FC = () => {
 
   return (
     <div className="relative flex justify-end self-center">
-      <button onClick={toggleProfileMenu} ref={menuRef}>
-        Notification
+      <button onClick={toggleProfileMenu} ref={menuRef} className="flex">
+        <span className="material-symbols-outlined">notifications</span>
       </button>
       {isMenuOpen && <MenuModal notifications={notifications} />}
     </div>
