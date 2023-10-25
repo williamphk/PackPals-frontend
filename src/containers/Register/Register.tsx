@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Register: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -48,18 +49,28 @@ const Register: React.FC = () => {
             placeholder="peter@email.com"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label className="block text-sm font-medium mb-2" htmlFor="password">
             Password*
           </label>
           <input
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
             placeholder="********"
           />
+          <div className="absolute right-4 top-10">
+            <button
+              type="button"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            >
+              <span className="material-symbols-outlined text-gray-500">
+                {isPasswordVisible ? "visibility" : "visibility_off"}
+              </span>
+            </button>
+          </div>
         </div>
         <div className="mb-6">
           <label

@@ -8,7 +8,7 @@ const Login: React.FC = () => {
   const { setUser } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -114,7 +114,7 @@ const Login: React.FC = () => {
             Password*
           </label>
           <input
-            type={passwordVisible ? "text" : "password"}
+            type={isPasswordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
@@ -126,10 +126,10 @@ const Login: React.FC = () => {
           <div className="absolute right-4 top-11">
             <button
               type="button"
-              onClick={() => setPasswordVisible(!passwordVisible)}
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             >
               <span className="material-symbols-outlined text-gray-500">
-                {passwordVisible ? "visibility" : "visibility_off"}
+                {isPasswordVisible ? "visibility" : "visibility_off"}
               </span>
             </button>
           </div>

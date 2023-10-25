@@ -45,7 +45,7 @@ const App: React.FC = () => {
             {isAuthenticated && <NavigationHandler />}
             {isAuthenticated && <NotificationHandler />}
             <Header />
-            <main className="sm:min-h-[80vh]">
+            <main className="sm:min-h-[95vh]">
               <Routes>
                 <Route
                   path="/"
