@@ -47,14 +47,25 @@ const NotificationItem: React.FC<{ notification: Notification }> = ({
 };
 
 const MenuModal: React.FC<MenuModalProps> = ({ notifications }) => {
-  return (
-    <div className="absolute top-[64px] right-[-150px] h-[80vh] overflow-scroll w-[400px] mt-1 p-2 bg-white rounded-lg shadow-3xl text-gray-800 dark:bg-gray-950 dark:text-white transition-colors duration-200 flex flex-col gap-y-2 shadow-xl">
-      <h3 className="text-xl font-bold p-2 dark:text-white">Notifications</h3>
-      {notifications.map((element, index) => (
-        <NotificationItem key={index} notification={element} />
-      ))}
-    </div>
-  );
+  if (notifications.length === 0) {
+    return (
+      <div className="absolute top-[64px] right-[-150px] max-h-[80vh] overflow-scroll w-[400px] mt-1 p-2 bg-white rounded-lg shadow-3xl text-gray-800 dark:bg-gray-950 dark:text-white transition-colors duration-200 flex flex-col gap-y-2 shadow-xl">
+        <h3 className="text-xl font-bold p-2 dark:text-white">Notifications</h3>
+        <div className="text-gray-500 dark:text-gray-300">
+          No notifications found
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="absolute top-[64px] right-[-150px] max-h-[80vh] overflow-scroll w-[400px] mt-1 p-2 bg-white rounded-lg shadow-3xl text-gray-800 dark:bg-gray-950 dark:text-white transition-colors duration-200 flex flex-col gap-y-2 shadow-xl">
+        <h3 className="text-xl font-bold p-2 dark:text-white">Notifications</h3>
+        {notifications.map((element, index) => (
+          <NotificationItem key={index} notification={element} />
+        ))}
+      </div>
+    );
+  }
 };
 
 export default MenuModal;
