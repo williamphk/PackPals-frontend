@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import {
   getNotifications,
   getUnseenNotificationsCount,
+  markAllAsSeen,
 } from "../../services/notifications.ts";
 import { Notification } from "../../models/Notification.ts";
 
@@ -23,13 +24,14 @@ const NotificationButton: React.FC = () => {
     };
   }, []);
 
-  const handleClickOutside = (e: MouseEvent) => {
+  const handleClickOutside = async (e: MouseEvent) => {
     // If the menu is mounted in the DOM and the clicked element is not one of the menu items
     if (
       menuRef.current &&
       !(menuRef.current as any).contains(e.target as Node)
     ) {
       setIsMenuOpen(false);
+      await markAllAsSeen();
     }
   };
 
@@ -39,12 +41,12 @@ const NotificationButton: React.FC = () => {
   };
 
   useEffect(() => {
-    const unseenNotifications = async () => {
+    const getAllNotifications = async () => {
       const notifications = await getNotifications();
       setNotifications(notifications);
     };
-    unseenNotifications();
-  }, []);
+    getAllNotifications();
+  }, [isMenuOpen]);
 
   useEffect(() => {
     const unseenNotifications = async () => {
@@ -52,9 +54,7 @@ const NotificationButton: React.FC = () => {
       setNotificationsCount(count.count);
     };
     unseenNotifications();
-  }, []);
-
-  console.log(notificationsCount);
+  }, [isMenuOpen]);
 
   return (
     <div className="relative flex justify-end self-center">
