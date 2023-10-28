@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import { register } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 
+interface error {
+  msg: string;
+}
+
 const Register: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState([] as error[]);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -13,6 +18,7 @@ const Register: React.FC = () => {
     password: "",
     first_name: "",
     last_name: "",
+    postal_code: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,10 +29,31 @@ const Register: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    register(formData).then(() => navigate("/login"));
+    try {
+      await register(formData).then(() => navigate("/login"));
+    } catch (err) {
+      console.log("err");
+      setIsLoading(false);
+
+      const error = err as {
+        response?: {
+          data?: {
+            errors?: [
+              {
+                msg: string;
+              }
+            ];
+          };
+        };
+      };
+
+      setErrors(
+        error.response?.data?.errors ?? [{ msg: "Something went wrong" }]
+      );
+    }
   };
 
   return (
@@ -36,6 +63,17 @@ const Register: React.FC = () => {
         className="bg-white p-6 sm:p-12 rounded-xl shadow-md w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Register</h2>
+        {errors.length > 0 ? (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-6">
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error.msg}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="py-5 mb-6"></div>
+        )}
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2" htmlFor="email">
             Email*
@@ -99,6 +137,22 @@ const Register: React.FC = () => {
             onChange={handleChange}
             className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
             placeholder="Parker"
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-sm font-medium mb-2"
+            htmlFor="postal_code"
+          >
+            Postal Code*
+          </label>
+          <input
+            type="text"
+            name="postal_code"
+            value={formData.postal_code}
+            onChange={handleChange}
+            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+            placeholder="M1N 1N1"
           />
         </div>
         <button

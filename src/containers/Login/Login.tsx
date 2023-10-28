@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import { login } from "../../services/auth";
 import { useUser } from "../../context/UserContext";
 
+interface error {
+  msg: string;
+}
+
 const Login: React.FC = () => {
   const { setUser } = useUser();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState([] as error[]);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -41,12 +45,18 @@ const Login: React.FC = () => {
       const error = err as {
         response?: {
           data?: {
-            message?: string;
+            errors?: [
+              {
+                msg: string;
+              }
+            ];
           };
         };
       };
 
-      setError(error?.response?.data?.message || "Something went wrong");
+      setErrors(
+        error.response?.data?.errors ?? [{ msg: "Something went wrong" }]
+      );
     }
   };
 
@@ -71,12 +81,18 @@ const Login: React.FC = () => {
       const error = err as {
         response?: {
           data?: {
-            message?: string;
+            errors?: [
+              {
+                msg: string;
+              }
+            ];
           };
         };
       };
 
-      setError(error?.response?.data?.message || "Something went wrong");
+      setErrors(
+        error.response?.data?.errors ?? [{ msg: "Something went wrong" }]
+      );
     }
   };
 
@@ -87,9 +103,13 @@ const Login: React.FC = () => {
         className="bg-white p-6 sm:p-12 rounded-xl shadow-md w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
-        {error ? (
+        {errors.length > 0 ? (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-6">
-            <p>{error}</p>
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error.msg}</li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div className="py-5 mb-6"></div>
