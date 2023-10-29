@@ -60,7 +60,7 @@ const Register: React.FC = () => {
     <div className="flex flex-col items-center justify-center h-full p-4 sm:h-[80vh]">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 sm:p-12 rounded-xl shadow-md w-full max-w-lg"
+        className="bg-white p-6 sm:p-10 rounded-xl shadow-md w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Register</h2>
         {errors.length > 0 ? (
@@ -74,6 +74,40 @@ const Register: React.FC = () => {
         ) : (
           <div className="py-5 mb-6"></div>
         )}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div>
+            <label
+              className="block text-sm font-medium mb-2"
+              htmlFor="first_name"
+            >
+              First Name*
+            </label>
+            <input
+              type="text"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
+              className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+              placeholder="Peter"
+            />
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium mb-2"
+              htmlFor="last_name"
+            >
+              Last Name*
+            </label>
+            <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+              className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
+              placeholder="Parker"
+            />
+          </div>
+        </div>
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2" htmlFor="email">
             Email*
@@ -109,35 +143,6 @@ const Register: React.FC = () => {
               </span>
             </button>
           </div>
-        </div>
-        <div className="mb-6">
-          <label
-            className="block text-sm font-medium mb-2"
-            htmlFor="first_name"
-          >
-            First Name*
-          </label>
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
-            placeholder="Peter"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm font-medium mb-2" htmlFor="last_name">
-            Last Name*
-          </label>
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            className="p-2 w-full border rounded-lg focus:border-blue-500 focus:outline-none border-2"
-            placeholder="Parker"
-          />
         </div>
         <div className="mb-6">
           <label
