@@ -33,11 +33,12 @@ const NotificationButton: React.FC = () => {
       !(menuRef.current as any).contains(e.target as Node)
     ) {
       setIsMenuOpen(false);
+      setNotificationsCount(0);
       await markAllAsSeen();
     }
   };
 
-  const toggleProfileMenu = () => {
+  const toggleProfileMenu = async () => {
     console.log("toggle");
     setIsMenuOpen(!isMenuOpen);
   };
