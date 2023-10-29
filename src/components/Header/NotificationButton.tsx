@@ -5,6 +5,7 @@ import {
   markAllAsSeen,
 } from "../../services/notifications.ts";
 import { Notification } from "../../models/Notification.ts";
+import { useSocket } from "../../context/SocketContext.tsx";
 
 import MenuModal from "./MenuModal.tsx";
 
@@ -12,6 +13,7 @@ const NotificationButton: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [notifications, setNotifications] = useState([] as Notification[]);
   const [notificationsCount, setNotificationsCount] = useState(0);
+  const { notificationCount } = useSocket();
 
   // Reference the profile menu DOM element.
   const menuRef = useRef(null);
@@ -54,7 +56,7 @@ const NotificationButton: React.FC = () => {
       setNotificationsCount(count.count);
     };
     unseenNotifications();
-  }, [isMenuOpen]);
+  }, [isMenuOpen, notificationCount]);
 
   return (
     <div className="relative flex justify-end self-center">

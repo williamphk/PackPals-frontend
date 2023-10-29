@@ -16,6 +16,7 @@ interface SocketProviderProps {
 
 export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<any>(null);
+  const [notificationCount, setNotificationCount] = useState(0);
   // const { user } = useUser();
 
   useEffect(() => {
@@ -30,6 +31,10 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+    <SocketContext.Provider
+      value={{ socket, notificationCount, setNotificationCount }}
+    >
+      {children}
+    </SocketContext.Provider>
   );
 };
