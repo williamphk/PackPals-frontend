@@ -122,7 +122,7 @@ const Dashboard: React.FC = () => {
               value={formData.product_name}
               onChange={handleChange}
               required
-              placeholder="Enter the product or deal you're interested in..."
+              placeholder="Enter the product or deal you're interested in... such as milk"
               className="p-2 w-full border rounded-xl focus:border-blue-500 focus:outline-none dark:bg-gray-900 dark:text-white "
               id="product_name"
             />
