@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   getNotifications,
   getUnseenNotificationsCount,
-  markAllAsSeen,
 } from "../../services/notifications.ts";
 import { Notification } from "../../models/Notification.ts";
 import { useSocket } from "../../context/SocketContext.tsx";
@@ -12,33 +11,11 @@ import MenuModal from "./MenuModal.tsx";
 const NotificationButton: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [notifications, setNotifications] = useState([] as Notification[]);
-  const [notificationsCount, setNotificationsCount] = useState(0);
+  const [notificationsCount, setNotificationsCount] = useState(0 as number);
   const { notificationCount } = useSocket();
+  const buttonRef = useRef(null);
 
-  // Reference the profile menu DOM element.
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      // When the Navbar component is unmounted, the event listener is removed
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-  const handleClickOutside = async (e: MouseEvent) => {
-    // If the menu is mounted in the DOM and the clicked element is not one of the menu items
-    if (
-      menuRef.current &&
-      !(menuRef.current as any).contains(e.target as Node)
-    ) {
-      setIsMenuOpen(false);
-      setNotificationsCount(0);
-      await markAllAsSeen();
-    }
-  };
-
-  const toggleProfileMenu = async () => {
+  const toggleProfileMenu = () => {
     console.log("toggle");
     setIsMenuOpen(!isMenuOpen);
   };
@@ -57,11 +34,11 @@ const NotificationButton: React.FC = () => {
       setNotificationsCount(count.count);
     };
     unseenNotifications();
-  }, [isMenuOpen, notificationCount]);
+  }, [notificationCount]);
 
   return (
     <div className="relative flex justify-end self-center">
-      <button onClick={toggleProfileMenu} ref={menuRef} className="flex">
+      <button onClick={toggleProfileMenu} className="flex" ref={buttonRef}>
         <span className="material-symbols-outlined">notifications</span>
       </button>
       {notificationsCount > 0 && !isMenuOpen && (
@@ -69,7 +46,14 @@ const NotificationButton: React.FC = () => {
           {notificationsCount}
         </div>
       )}
-      {isMenuOpen && <MenuModal notifications={notifications} />}
+      {isMenuOpen && (
+        <MenuModal
+          notifications={notifications}
+          setIsMenuOpen={setIsMenuOpen}
+          setNotificationsCount={setNotificationsCount}
+          buttonRef={buttonRef}
+        />
+      )}
     </div>
   );
 };
