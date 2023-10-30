@@ -7,6 +7,7 @@ export interface Match {
     last_name: string;
     email: string;
     created_date: Date;
+    postal_code: string;
   };
   requesteeId: string;
   requesteeDetails?: {
@@ -14,6 +15,7 @@ export interface Match {
     last_name: string;
     email: string;
     created_date: Date;
+    postal_code: string;
   };
   created_date: Date;
   status: string;

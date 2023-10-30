@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSocket } from "../../../context/SocketContext";
+//import { useSocket } from "../../../context/SocketContext";
 
 import { createMatch, acceptMatch } from "../../../services/match";
 import { getRecentMatchesByReqesterId } from "../../../services/user";
@@ -26,7 +26,7 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
   isLoading,
 }) => {
   const navigate = useNavigate();
-  const socket = useSocket();
+  // const socket = useSocket();
 
   const [isMatchHosted, setIsMatchHosted] = useState(false);
   const [matchHostedMessage, setMatchHostedMessage] = useState("");
@@ -48,13 +48,13 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
   ) => {
     e.preventDefault();
     const result = await acceptMatch(matchId);
-    if (socket) {
-      console.log("emitting requestAccepted");
-      socket.emit("requestAccepted", {
-        requestId: "REQUEST_ID",
-        requesterId: "REQUESTER_ID",
-      });
-    }
+    // if (socket) {
+    //   console.log("emitting requestAccepted");
+    //   socket.emit("requestAccepted", {
+    //     requestId: "REQUEST_ID",
+    //     requesterId: "REQUESTER_ID",
+    //   });
+    // }
 
     setMatchAcceptedMessage(result.message);
     setIsMatchAccepted(true);
@@ -110,6 +110,7 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
             {match.requesterDetails?.first_name}{" "}
             {match.requesterDetails?.last_name}
           </p>
+          <p>{match.requesterDetails?.postal_code}</p>
           <div className="flex space-x-2">
             <button
               className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150"
