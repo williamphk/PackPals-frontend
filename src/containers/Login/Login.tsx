@@ -36,6 +36,7 @@ const Login: React.FC = () => {
         first_name: result.first_name,
         last_name: result.last_name,
         id: result.id,
+        postal_code: result.postal_code,
       };
       setUser(user);
       setIsLoading(false);
@@ -72,6 +73,7 @@ const Login: React.FC = () => {
         first_name: result.first_name,
         last_name: result.last_name,
         id: result.id,
+        postal_code: result.postal_code,
       };
       setUser(user);
       setIsLoading(false);
