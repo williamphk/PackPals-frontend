@@ -11,6 +11,7 @@ import UserProfile from "../../UserProfile/UserProfile";
 import MatchHosted from "../MatchHosted/MatchHosted";
 import MatchAccepted from "../MatchAccepted/MatchAccepted";
 import SkeletonMatch from "../SkeletonMatch";
+import Map from "./Map";
 
 interface PotentialMatchesProps {
   formData: {
@@ -103,31 +104,35 @@ const PotentialMatches: React.FC<PotentialMatchesProps> = ({
       {potentialMatches.map((match) => (
         <div
           key={match._id}
-          className="bg-white p-6 rounded-xl shadow-md mb-4 flex flex-col dark:bg-gray-700"
+          className="flex bg-white p-6 rounded-xl shadow-md mb-4 dark:bg-gray-700 justify-between"
         >
-          <h3 className="text-3xl font-bold mb-2">{match.product_name}</h3>
-          <p className="text-gray-700 mb-4 dark:text-white">
-            {match.requesterDetails?.first_name}{" "}
-            {match.requesterDetails?.last_name}
-          </p>
-          <p>{match.requesterDetails?.postal_code}</p>
-          <div className="flex space-x-2">
-            <button
-              className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150"
-              onClick={(event) => handleProfile(match.requesterId, event)}
-            >
-              View Profile
-            </button>
-            <button
-              className="py-1 px-3 bg-green-500 text-white rounded hover:bg-green-600 transition duration-150"
-              onClick={(event) => handleConnect(match._id, event)}
-            >
-              Connect
-            </button>
+          <div className="flex flex-col justify-between">
+            <div>
+              <h3 className="text-3xl font-bold mb-2">{match.product_name}</h3>
+              <p className="text-gray-700 mb-4 dark:text-white">
+                {match.requesterDetails?.first_name}{" "}
+                {match.requesterDetails?.last_name}
+              </p>
+            </div>
+            <div className="flex space-x-2">
+              <button
+                className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150"
+                onClick={(event) => handleProfile(match.requesterId, event)}
+              >
+                View Profile
+              </button>
+              <button
+                className="py-1 px-3 bg-green-500 text-white rounded hover:bg-green-600 transition duration-150"
+                onClick={(event) => handleConnect(match._id, event)}
+              >
+                Connect
+              </button>
+            </div>
+            {viewedProfileId === match.requesterId && (
+              <UserProfile recentMatches={recentMatches} />
+            )}
           </div>
-          {viewedProfileId === match.requesterId && (
-            <UserProfile recentMatches={recentMatches} />
-          )}
+          <Map destination={match.requesterDetails?.postal_code} />
         </div>
       ))}
       <div className="flex gap-x-2">
