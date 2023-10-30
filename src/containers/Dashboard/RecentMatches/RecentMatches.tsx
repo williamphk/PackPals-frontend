@@ -47,11 +47,11 @@ const RecentMatches: React.FC = () => {
       <li key={match._id}>
         <p className="text-2xl font-bold">{match.product_name}</p>
         <p>
-          Requester: {match.requesterDetails?.first_name}{" "}
+          Requested by: {match.requesterDetails?.first_name}{" "}
           {match.requesterDetails?.last_name}
         </p>
         <p>
-          Reqestee: {match.requesteeDetails?.first_name}{" "}
+          Accepted by: {match.requesteeDetails?.first_name}{" "}
           {match.requesteeDetails?.last_name}
         </p>
         <Link to={`mailto:${email}`}>
