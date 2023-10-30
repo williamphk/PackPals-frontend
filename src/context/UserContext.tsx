@@ -5,6 +5,7 @@ interface User {
   email: string;
   first_name: string;
   last_name: string;
+  postal_code: string;
 }
 
 interface UserContextProps {

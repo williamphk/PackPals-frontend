@@ -5,6 +5,7 @@ export interface RegisterData {
   last_name: string;
   email: string;
   password: string;
+  postal_code: string;
 }
 
 export interface LoginData {
@@ -19,6 +20,7 @@ export interface LoginResponse {
   first_name: string;
   last_name: string;
   email: string;
+  postal_code: string;
   id: string;
 }
 
@@ -41,6 +43,7 @@ export const login = async (data: LoginData): Promise<LoginResponse> => {
       first_name: response.data.first_name,
       last_name: response.data.last_name,
       email: response.data.email,
+      postal_code: response.data.postal_code,
       id: response.data.id,
     };
     localStorage.setItem("user", JSON.stringify(user));
